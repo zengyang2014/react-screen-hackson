@@ -16,12 +16,34 @@
   background:#010310;
   color:white;
   font-size: px(16);
+
   > header{
     height:px(99);
     background-size:cover;
     width: px(2420);
     margin: 0 auto;
+    text-align: center;
+    > .title-text {
+      width: 100%;
+      margin: auto;
+      line-height: px(80);
+      font-size: px(42);
+      background: linear-gradient(#b8dcfc, #15abfe);
+      -webkit-background-clip: text;
+      font-weight: 600;
+      color: transparent;
+    }
+    > .title-timer {
+      margin: px(-10) auto 0 auto;
+      width: px(800);
+      > div {
+        text-align: right;
+        margin-right: px(50);
+        color: #15abfe;
+      }
+    }
   }
+
   > footer{
     height: px(68);
     border: 1px solid #0d2d59;
