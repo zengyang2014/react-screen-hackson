@@ -3,10 +3,14 @@ import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from '../shared/px';
 import "./chart-3.scss"
+import {useRecoilState} from "recoil";
+import {provinceState} from "../state/store";
+import {headerTextGen} from "./util/headerTextGen";
 
 
 export const Chart3 = () => {
     const divRef = useRef(null);
+    const [province] = useRecoilState(provinceState)
     useEffect(() => {
         var myChart = echarts.init(divRef.current);
         myChart.setOption(createEchartsOptions({
@@ -77,7 +81,7 @@ export const Chart3 = () => {
 
     return (
         <div className="bordered daily-productive">
-            <h2>日总产量</h2>
+            <h2>{headerTextGen(province)}日总产量</h2>
             <div ref={divRef} className="chart"/>
         </div>
     );

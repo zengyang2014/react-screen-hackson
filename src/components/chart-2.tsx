@@ -3,10 +3,14 @@ import * as echarts from 'echarts';
 import {px} from '../shared/px';
 import {baseEchartOptions} from '../shared/base-echart-options';
 import {createEchartsOptions} from '../shared/create-echarts-options';
+import {useRecoilState} from "recoil";
+import {provinceState} from "../state/store";
+import {headerTextGen} from "./util/headerTextGen";
 
 export const Chart2 = () => {
     const divRef = useRef(null);
     const myChart = useRef(null);
+    const [province] = useRecoilState(provinceState)
     const data = [
         {name: '城关区公安局', 2011: 2, 2012: 3},
         {name: '七里河区公安局', 2011: 2, 2012: 3},
@@ -96,7 +100,7 @@ export const Chart2 = () => {
 
     return (
         <div className="bordered daily-productive-sort">
-            <h2>日产量排名</h2>
+            <h2>{headerTextGen(province)}日产量排名</h2>
             <div ref={divRef} className="chart"/>
             <div className="legend">
                 <span className="first"/> 破案排名1

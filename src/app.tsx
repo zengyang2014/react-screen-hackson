@@ -6,7 +6,6 @@ import {Config} from './pages/config';
 import {RecoilRoot} from "recoil";
 
 function App() {
-
   return (
     <RecoilRoot>
       <div className="App">

@@ -4,9 +4,12 @@ import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from '../shared/px';
 import china from '../geo/china.json';
 import "./chart-6.scss"
+import {useRecoilState} from "recoil";
+import {provinceState} from "../state/store";
 
 
 export const Chart6 = () => {
+    const [province, setProvince] = useRecoilState(provinceState)
     const divRef = useRef(null);
     const colors = {'青海省': '#BB31F7', '甘肃省': '#15B8FD', '四川省': '#06E1EE'};
     useEffect(() => {
@@ -71,7 +74,9 @@ export const Chart6 = () => {
         }));
 
         myChart.on('click', (eventParam) => {
-            console.log(eventParam)
+            if(eventParam.name === '河北省') {
+                setProvince('HeBei')
+            }
         })
     }, []);
 

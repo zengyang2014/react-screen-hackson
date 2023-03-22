@@ -9,13 +9,14 @@ import {Chart6} from "../components/chart-6";
 import {Chart7} from '../components/chart-7';
 import {Chart8} from '../components/chart-8';
 import {Chart9} from '../components/chart-9';
-import {Chart10} from "../components/chart-10";
-import {Chart11} from "../components/chart-11";
 import {Chart12} from "../components/chart-12";
 import {Chart13} from "../components/chart-13";
 import {Chart14} from "../components/chart-14";
 import {Chart15} from "../components/chart-15";
 import {px} from "../shared/px";
+import {useRecoilState} from "recoil";
+import {provinceState} from "../state/store";
+import {headerTextGen} from "../components/util/headerTextGen";
 
 const formatDigits = (digit: number, length: number) => {
   return (digit + "").padStart(length, "0")
@@ -25,6 +26,7 @@ export const Home = () => {
   const year = new Date().getFullYear();
 
   const [timer, setTimer] = useState("")
+  const [province] = useRecoilState(provinceState)
 
   useEffect(() => {
     setInterval(() => {
@@ -78,13 +80,13 @@ export const Home = () => {
         </section>
         <section className="section5">
           <div className="bordered row1 defective-percentage">
-            <h2>次品趋势图</h2>
+            <h2>{headerTextGen(province)}次品趋势图</h2>
             <div className="charts">
               <Chart15/>
             </div>
           </div>
           <div className="bordered row2 non-failure-time" style={{height: `${px(390)}px`}}>
-            <h2>平均故障时间</h2>
+            <h2>{headerTextGen(province)}平均故障时间</h2>
             <div className="charts" style={{height: `${px(350)} !important`}}>
               <Chart12/>
               <Chart13/>
@@ -93,7 +95,7 @@ export const Home = () => {
         </section>
         <section>
           <div className="bordered row3 chart-14-box">
-            <h2>次品原因分析</h2>
+            <h2>{headerTextGen(province)}次品原因分析</h2>
             <Chart14/>
           </div>
         </section>

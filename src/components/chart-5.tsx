@@ -3,7 +3,7 @@ import React from 'react';
 export const Chart5 = () => {
   return (
     <div className="战果">
-      <h2>用料库存</h2>
+      <h2>全国用料库存</h2>
       <table>
         <thead>
         <tr>
