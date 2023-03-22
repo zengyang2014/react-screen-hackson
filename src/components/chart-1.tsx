@@ -3,9 +3,13 @@ import * as echarts from "echarts";
 import {px} from "../shared/px";
 import {createEchartsOptions} from "../shared/create-echarts-options";
 import "./chart-1.scss"
+import {useRecoilState} from "recoil";
+import {provinceState} from "../state/store";
+import {headerTextGen} from "./util/headerTextGen";
 
 export const Chart1=()=>{
     const divRef = useRef(null)
+    const [province] = useRecoilState(provinceState)
     useEffect(()=>{
         console.log(divRef.current)
         let myChart = echarts.init(divRef.current);
@@ -45,9 +49,10 @@ export const Chart1=()=>{
             }]
         }));
     },[])
+
     return (
         <div className="monthly-productive bordered">
-            <h2>月总产量</h2>
+            <h2>{headerTextGen(province)}总产量</h2>
             <div ref={divRef} className="chart"></div>
         </div>
     )
