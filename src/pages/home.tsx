@@ -7,7 +7,6 @@ import {Chart3} from "../components/chart-3";
 import {Chart5} from "../components/chart-5";
 import {Chart6} from "../components/chart-6";
 import {Chart7} from '../components/chart-7';
-import {Chart8} from '../components/chart-8';
 import {Chart9} from '../components/chart-9';
 import {Chart12} from "../components/chart-12";
 import {Chart13} from "../components/chart-13";
@@ -70,7 +69,7 @@ export const Home = () => {
         </section>
         <section className="section7">
           <div className="bordered 年龄段" style={{height: `${px(380)}px`}}>
-            <h2>能效统计</h2>
+            <h2>{headerTextGen(province)}能效统计</h2>
             <div className="charts">
               <Chart7/>
               <Chart9/>

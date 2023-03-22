@@ -55,14 +55,14 @@
     justify-content: center;
   }
   > main {
-    width: px(2420);
+    width: 94vw;
     margin: 0 auto;
     padding-top:px(30);
     flex: 1;
     display: grid;
     grid-template:
             "box1 box2 box4 box5" 755fr
-            "box3 box3 box7 box6" 363fr / 366fr 361fr 811fr 747fr;
+            "box3 box3 box7 box6" 363fr / 15.666667% 15.666667% 33.333333% 31.333333%;
     grid-column-gap:px(28);
     grid-row-gap: px(28);
     > section{
