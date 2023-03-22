@@ -6,7 +6,7 @@ import {px} from '../shared/px';
 export const Chart9 = () => {
     const divRef = useRef(null);
     useEffect(() => {
-        var myChart = echarts.init(divRef.current);
+        const myChart = echarts.init(divRef.current);
         myChart.setOption(createEchartsOptions({
             color: '#F7A110',
             xAxis: {
@@ -22,7 +22,7 @@ export const Chart9 = () => {
                 splitLine: {lineStyle: {color: '#073E78'}},
                 axisLabel: {
                     formatter(val) {
-                        return val * 100 + '%';
+                        return val * 100 + 'kwh';
                     }
                 }
             },
@@ -51,7 +51,7 @@ export const Chart9 = () => {
 
     return (
         <div className="年龄段-图3">
-            <h3>犯罪年龄趋势图</h3>
+            <h3>能效趋势图 - 每百辆</h3>
             <div ref={divRef} className="chart">   </div>
         </div>
     );

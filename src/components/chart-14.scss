@@ -1,6 +1,13 @@
 @import "../shared/helper";
 
+.chart-14-box {
+  height: 100% !important;
+}
+
 .chart-14 {
+  height: 80% !important;
+  margin-top: -10px;
+
   > thead > tr > th {
     height: px(35) !important;
   }
