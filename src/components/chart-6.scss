@@ -3,3 +3,24 @@
 .the-map {
   height: 100% !important;
 }
+
+
+.return-button {
+  color: white;
+  position: absolute;
+  border: 1px solid #0a5299;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  font-size: 0.9090909091rem;
+  line-height: 0.9917355372rem;
+  padding: 0.4132231405rem 1.1570247934rem;
+  text-shadow: 0 0 0.1239669421rem white;
+  background: inherit;
+  flex: auto;
+  right: 0.01rem;
+  cursor: pointer;
+}
+
+.return-button:hover {
+  background: #1cecd9;
+}

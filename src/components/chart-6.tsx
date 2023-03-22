@@ -3,19 +3,22 @@ import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from '../shared/px';
 import china from '../geo/china.json';
+import baoding from '../geo/baoding.json'
 import "./chart-6.scss"
 import {useRecoilState} from "recoil";
 import {provinceState} from "../state/store";
+import {headerTextGen} from "./util/headerTextGen";
 
 
 export const Chart6 = () => {
     const [province, setProvince] = useRecoilState(provinceState)
     const divRef = useRef(null);
-    const colors = {'青海省': '#BB31F7', '甘肃省': '#15B8FD', '四川省': '#06E1EE'};
+    const colors = {'BaoDing': '#BB31F7', 'ChengDu': '#15B8FD', 'ShangHai': '#06E1EE', 'XiAn': '#04FBEE'};
+
     useEffect(() => {
         var myChart = echarts.init(divRef.current);
         // @ts-ignore
-        echarts.registerMap('CN', china);
+        echarts.registerMap('CN', province === 'HeBei'? baoding : china);
         myChart.setOption(createEchartsOptions({
             xAxis: {show: false},
             yAxis: {show: false},
@@ -24,12 +27,12 @@ export const Chart6 = () => {
                     type: 'map',
                     mapType: 'CN', // 自定义扩展图表类型
                     data: [
-                        {name: '甘肃省', value: 1},
+                        {name: '河北省', value: 1},
                     ],
                     label: {show: false, color: 'white'},
                     itemStyle: {
                         areaColor: '#010D3D',
-                        color: colors['甘肃省'],
+                        color: colors['BaoDing'],
                         borderColor: '#01A7F7',
                         emphasis: {
                             label: {color: 'white'},
@@ -45,7 +48,7 @@ export const Chart6 = () => {
                     ],
                     itemStyle: {
                         areaColor: '#010D3D',
-                        color: colors['四川省'],
+                        color: colors['ChengDu'],
                         borderColor: 'yellow',
                         emphasis: {
                             label: {color: 'white'},
@@ -57,11 +60,11 @@ export const Chart6 = () => {
                     type: 'map',
                     mapType: 'CN', // 自定义扩展图表类型
                     data: [
-                        {name: '青海省', value: 100},
+                        {name: '上海市', value: 100},
                     ],
                     itemStyle: {
                         areaColor: '#010D3D',
-                        color: colors['青海省'],
+                        color: colors['ShangHai'],
                         borderColor: '#01A7F7',
                         emphasis: {
                             label: {color: 'white'},
@@ -69,7 +72,38 @@ export const Chart6 = () => {
                         },
                     }
                 },
-
+                {
+                    type: 'map',
+                    mapType: 'CN', // 自定义扩展图表类型
+                    data: [
+                        {name: '陕西省', value: 100},
+                    ],
+                    itemStyle: {
+                        areaColor: '#010D3D',
+                        color: colors['XiAn'],
+                        borderColor: '#01A7F7',
+                        emphasis: {
+                            label: {color: 'white'},
+                            areaColor: '#5470C6',
+                        },
+                    }
+                },
+                {
+                    type: 'map',
+                    mapType: 'CN', // 自定义扩展图表类型
+                    data: [
+                        {name: '莲池区', value: 100},
+                    ],
+                    itemStyle: {
+                        areaColor: '#010D3D',
+                        color: colors['XiAn'],
+                        borderColor: '#01A7F7',
+                        emphasis: {
+                            label: {color: 'white'},
+                            areaColor: '#5470C6',
+                        },
+                    }
+                },
             ]
         }));
 
@@ -78,18 +112,18 @@ export const Chart6 = () => {
                 setProvince('HeBei')
             }
         })
-    }, []);
+    }, [province]);
+
+    const returnToChina = (event) => {
+      setProvince('China')
+    }
 
     return (
         <div className="bordered the-map">
-            <h2>全国工厂分布地</h2>
+            <h2>{headerTextGen(province)}工厂分布地</h2>
+            {province === 'HeBei'&&<button className='return-button' onClick={returnToChina}>返回</button>}
             <div className="wrapper">
                 <div ref={divRef} className="chart"/>
-                <div className="legend bordered">
-                    <span className="icon" style={{background: colors['甘肃省']}}/>甘肃籍
-                    <span className="icon" style={{background: colors['四川省']}}/>四川籍
-                    <span className="icon" style={{background: colors['青海省']}}/>青海籍
-                </div>
                 <div className="notes">此地图仅显示了中国的部分区域</div>
             </div>
         </div>
