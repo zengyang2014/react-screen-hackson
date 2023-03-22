@@ -1,5 +1,5 @@
 import KoaRouter from 'koa-router';
-import {scadaCache} from './data'
+import {scadaCache} from './scada'
 
 const api =  new KoaRouter();
 
@@ -13,14 +13,28 @@ api.get('/scada',
     };
   });
 
-api.post('/scada/:key',
+api.patch('/scada/:key',
   async (ctx, next) => {
     const {key} = ctx.params
     const {value} = ctx.request.body as any
 
     scadaCache.setCacheByKey(key, value)
+    ctx.body = {
+      data: 'success'
+    };
+    ctx.status = 200;
+  });
 
-    ctx.status = 201;
+api.put('/scada/plcport',
+  async (ctx, next) => {
+    const {key} = ctx.params
+    const plcPortValues = ctx.request.body as {[key:string]: boolean|number|string}
+
+    scadaCache.setPlcPortValues(plcPortValues)
+    ctx.body = {
+      data: 'success'
+    };
+    ctx.status = 200;
   });
 
 export default api;

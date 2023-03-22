@@ -16,41 +16,18 @@ import {Chart13} from "../components/chart-13";
 import {Chart14} from "../components/chart-14";
 import {Chart15} from "../components/chart-15";
 import {px} from "../shared/px";
+import {Timer}from '../components/Timer'
 
-const formatDigits = (digit: number, length: number) => {
-  return (digit + "").padStart(length, "0")
-}
 
 export const Home = () => {
   const year = new Date().getFullYear();
-
-  const [timer, setTimer] = useState("")
-
-  useEffect(() => {
-    setInterval(() => {
-      const time = new Date();
-      const year = formatDigits(time.getFullYear(), 4)
-      const month = formatDigits(time.getMonth() + 1, 2);
-      const date = formatDigits(time.getDate(), 2);
-      const hour = formatDigits(time.getHours(), 2);
-      const minute = formatDigits(time.getMinutes(), 2);
-      const seconds = formatDigits(time.getSeconds(), 2);
-      const timeString = `${year}年${month}月${date} ${hour}:${minute}:${seconds}`
-      setTimer(timeString)
-    }, 1000)
-  }, [])
-
   return (
     <div className="home">
       <header style={{backgroundImage: `url(${headerBg})`}} className={"title"}>
         <div className={"title-text"}>
           工易赛博坦智能汽车制造产线
         </div>
-        <div className={"title-timer"}>
-          <div>
-            {timer}
-          </div>
-        </div>
+        <Timer/>
       </header>
       <main>
         <section className="section1">
