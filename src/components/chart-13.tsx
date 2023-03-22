@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
-
+import {px} from "../shared/px";
 export const Chart13 = () => {
     const divRef = useRef(null);
     const data = [
@@ -65,7 +65,6 @@ export const Chart13 = () => {
 
     return (
         <div ref={divRef} className="chart">
-
         </div>
     );
 };

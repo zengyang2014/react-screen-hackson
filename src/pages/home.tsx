@@ -1,10 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './home.scss';
 import headerBg from '../images/header.png'
 import {Chart1} from "../components/chart-1";
 import {Chart2} from "../components/chart-2";
 import {Chart3} from "../components/chart-3";
-import {Chart4} from "../components/chart-4";
 import {Chart5} from "../components/chart-5";
 import {Chart6} from "../components/chart-6";
 import {Chart7} from '../components/chart-7';
@@ -15,6 +14,8 @@ import {Chart11} from "../components/chart-11";
 import {Chart12} from "../components/chart-12";
 import {Chart13} from "../components/chart-13";
 import {Chart14} from "../components/chart-14";
+import {Chart15} from "../components/chart-15";
+import {px} from "../shared/px";
 
 const formatDigits = (digit: number, length: number) => {
   return (digit + "").padStart(length, "0")
@@ -43,7 +44,7 @@ export const Home = () => {
     <div className="home">
       <header style={{backgroundImage: `url(${headerBg})`}} className={"title"}>
         <div className={"title-text"}>
-          Hackathon智能汽车制造产线
+          工易赛博坦智能汽车制造产线
         </div>
         <div className={"title-timer"}>
           <div>
@@ -56,16 +57,17 @@ export const Home = () => {
           <Chart1></Chart1>
           <Chart2></Chart2>
         </section>
-        <section className="bordered section2">
+        <section className="section2">
           <Chart3/>
-          <Chart4/>
         </section>
         <section className="bordered section3">
           <Chart5/>
         </section>
-        <section className="bordered section4">
-          <Chart6/>
-          <div className="bordered 年龄段">
+        <section className="section4">
+          <div className="bordered">
+            <Chart6/>
+          </div>
+          <div className="bordered 年龄段" style={{height: `${px(370)}px`}}>
             <h2>犯罪人员年龄段分布</h2>
             <div className="charts">
               <Chart7/>
@@ -75,28 +77,29 @@ export const Home = () => {
           </div>
         </section>
         <section className="section5">
-          <div className="bordered row1 案发类型">
-            <h2>案发类型统计</h2>
+          <div className="bordered row1 defective-percentage">
+            <h2>次品趋势图</h2>
             <div className="charts">
-              <Chart10/>
-              <Chart11/>
+              <Chart15/>
             </div>
           </div>
-          <div className="bordered row2 案发街道">
-            <h2>案发街道统计</h2>
-            <div className="charts">
+          <div className="bordered row2 non-failure-time" style={{height: `${px(390)}px`}}>
+            <h2>平均故障时间</h2>
+            <div className="charts" style={{height: `${px(350)} !important`}}>
               <Chart12/>
               <Chart13/>
             </div>
           </div>
-          <div className="bordered row3 作案手段">
-            <h2>作案手段分析</h2>
+        </section>
+        <section>
+          <div className="bordered row3 chart-14-box">
+            <h2>次品原因分析</h2>
             <Chart14/>
           </div>
         </section>
       </main>
       <footer>
-        &copy; wanwan {year} 大屏监控
+        &copy; Hackathon Team 5 工易赛博坦 {year} 智能汽车生产线
       </footer>
     </div>
   );

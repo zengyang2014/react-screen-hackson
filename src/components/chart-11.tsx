@@ -5,7 +5,7 @@ import {px} from '../shared/px';
 
 export const Chart11 = () => {
     const divRef = useRef(null);
-    const colors = ['#F46064', '#F38E1C', '#1CDB7C', '#8D70F8', '#33A4FA'];
+    const colors = ['#F46064', '#F38E1C'];
     useEffect(() => {
         var myChart = echarts.init(divRef.current);
         myChart.setOption(createEchartsOptions({
@@ -33,10 +33,8 @@ export const Chart11 = () => {
                         shadowColor: 'rgba(0, 0, 0, 0.5)'
                     },
                     data: [
-                        {value: 0.36, name: '刑事案件'},
-                        {value: 0.20, name: '民事案件'},
-                        {value: 0.18, name: '经济案件'},
-                        {value: 0.24, name: '其他案件'},
+                        {value: 0.99999999, name: '良品率'},
+                        {value: 0.00000001, name: '次品率'},
                     ]
                 }
             ]

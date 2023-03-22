@@ -1,8 +1,9 @@
 import React from 'react';
+import "./chart-14.scss"
 
 export const Chart14 = () => {
     return (
-        <table>
+        <table className={"chart-14"}>
             <thead>
             <tr>
                 <th colSpan={2}>类型</th>
@@ -12,56 +13,46 @@ export const Chart14 = () => {
             </thead>
             <tbody>
             <tr>
-                <td rowSpan={4}>入室盗窃</td>
-                <td>翻窗入室</td>
+                <td rowSpan={3}>破损</td>
+                <td>机器人校准失败</td>
+                <td>15</td>
+                <td rowSpan={3}>21</td>
+            </tr>
+            <tr>
+                <td>机床加工程序错误</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>传送带定位阀错误</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td rowSpan={3}>裂缝</td>
+                <td>加工温度异常</td>
+                <td>5</td>
+                <td rowSpan={3}>25</td>
+            </tr>
+            <tr>
+                <td>加工参数异常</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>加工刀具破损</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td rowSpan={3}>剐蹭</td>
+                <td>机械爪过紧</td>
                 <td>10</td>
-                <td rowSpan={4}>80</td>
+                <td rowSpan={3}>25</td>
             </tr>
             <tr>
-                <td>撬门入室</td>
-                <td>20</td>
+                <td>传送带异物</td>
+                <td>8</td>
             </tr>
             <tr>
-                <td>技术开锁</td>
-                <td>20</td>
-            </tr>
-            <tr>
-                <td>撬防护栏</td>
-                <td>30</td>
-            </tr>
-            <tr>
-                <td rowSpan={2}>抢夺</td>
-                <td>摩托车飞车抢夺</td>
-                <td>22</td>
-                <td rowSpan={2}>44</td>
-            </tr>
-            <tr>
-                <td>徒手抢夺</td>
-                <td>22</td>
-            </tr>
-            <tr>
-                <td rowSpan={3}>扒窃</td>
-                <td>公交车扒窃</td>
-                <td>40</td>
-                <td rowSpan={3}>68</td>
-            </tr>
-            <tr>
-                <td>车站扒窃</td>
-                <td>22</td>
-            </tr>
-            <tr>
-                <td>街面扒窃</td>
-                <td>45</td>
-            </tr>
-            <tr>
-                <td rowSpan={2}>诈骗</td>
-                <td>甩票子诈骗</td>
-                <td>32</td>
-                <td rowSpan={2}>102</td>
-            </tr>
-            <tr>
-                <td>买手机诈骗</td>
-                <td>80</td>
+                <td>机床内异物</td>
+                <td>7</td>
             </tr>
             </tbody>
         </table>

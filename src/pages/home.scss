@@ -39,7 +39,7 @@
       > div {
         text-align: right;
         margin-right: px(50);
-        color: #15abfe;
+        color: #b8dcfc;
       }
     }
   }
@@ -62,7 +62,7 @@
     display: grid;
     grid-template:
             "box1 box2 box4 box5" 755fr
-            "box3 box3 box4 box5" 363fr / 366fr 361fr 811fr 747fr;
+            "box3 box3 box4 box6" 363fr / 366fr 361fr 811fr 747fr;
     grid-column-gap:px(28);
     grid-row-gap: px(28);
     > section{
@@ -127,11 +127,8 @@
       > .row2 {
         height: px(317);
       }
-      > .row3 {
-        height: px(455);
-      }
     }
-    .管辖统计, .破获排名, .发案趋势, .案发时段, .战果, .籍贯, .年龄段, .案发类型, .案发街道, .作案手段{
+    .monthly-productive, .daily-productive-sort, .daily-productive, .analysis, .战果, .the-map, .年龄段, .defective-percentage, .non-failure-time, .chart-14-box{
       height:px(315);
       display:flex;
       flex-direction:column;
@@ -156,7 +153,7 @@
         width:100%;
       }
     }
-    .发案趋势, .案发时段 {
+    .daily-productive, .analysis {
       height: px(363);
     }
     .chart11, .chart12 {
@@ -204,14 +201,13 @@
         }
       }
       &-图3 {
-        border: 1px solid #08397d;
         h3 {
           font-size: px(20);
           color: #7ab6db;
           margin-top: px(6);}
       }
     }
-    .籍贯 {
+    .the-map {
       height: px(753);
       background: transparent;
       > .wrapper {
@@ -242,7 +238,7 @@
         }
       }
     }
-    .战果, .作案手段 {
+    .战果, .chart-14-box {
       padding: 0 px(24);
       > table {
         width: 100%;
@@ -266,17 +262,19 @@
         }
       }
     }
-    .作案手段 {
+    .chart-14-box {
+      height: px(400) !important;
       > table {
         tbody {
           td {
-            height: px(26);
+            height: px(28);
           }
         }
       }
     }
-    .破获排名 {
+    .daily-productive-sort {
       height:px(423);
+      margin-top: px(25);
       .legend {
         display: flex;
         align-items: center;
@@ -299,4 +297,11 @@
 
   }
 
+}
+
+.daily-yield {
+  height: 10px;
+  width: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }

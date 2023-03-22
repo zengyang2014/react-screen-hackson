@@ -1,0 +1,11 @@
+@import "../shared/helper";
+
+.chart-14 {
+  > thead > tr > th {
+    height: px(35) !important;
+  }
+
+  > tr {
+    height: px(25);
+  }
+}

@@ -17,7 +17,7 @@ export const Chart12 = () => {
         {value: 0.08, name: '天水路'},
     ];
     useEffect(() => {
-        var myChart = echarts.init(divRef.current);
+        let myChart = echarts.init(divRef.current);
         myChart.setOption(createEchartsOptions({
             xAxis: {show: false},
             yAxis: {show: false},
@@ -56,7 +56,7 @@ export const Chart12 = () => {
 
     return (
         <div className="chart12">
-            <div className="chart">
+            <div className="chart" style={{height: px(400)}}>
                 <div className="main" ref={divRef}/>
             </div>
         </div>

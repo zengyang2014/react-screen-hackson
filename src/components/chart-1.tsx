@@ -1,15 +1,14 @@
 import React, {useEffect, useRef} from "react";
 import * as echarts from "echarts";
 import {px} from "../shared/px";
-import {baseEchartOptions} from "../shared/base-echart-options";
 import {createEchartsOptions} from "../shared/create-echarts-options";
-
+import "./chart-1.scss"
 
 export const Chart1=()=>{
     const divRef = useRef(null)
     useEffect(()=>{
         console.log(divRef.current)
-        var myChart = echarts.init(divRef.current);
+        let myChart = echarts.init(divRef.current);
         myChart.setOption(createEchartsOptions({
             xAxis: {
                 data: ['兰州新区', '2兰州新区', '3兰州新区', '4兰州新区', '5兰州新区', '6兰州新区','7','8','9'],
@@ -25,7 +24,6 @@ export const Chart1=()=>{
                         } else{
                             return val;
                         }
-
                     }
                 }
             },
@@ -48,8 +46,8 @@ export const Chart1=()=>{
         }));
     },[])
     return (
-        <div className="管辖统计 bordered">
-            <h2>案发派出所管辖统计</h2>
+        <div className="monthly-productive bordered">
+            <h2>月总产量</h2>
             <div ref={divRef} className="chart"></div>
         </div>
     )

@@ -3,6 +3,8 @@ import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from '../shared/px';
 import china from '../geo/china.json';
+import "./chart-6.scss"
+
 
 export const Chart6 = () => {
     const divRef = useRef(null);
@@ -67,11 +69,15 @@ export const Chart6 = () => {
 
             ]
         }));
+
+        myChart.on('click', (eventParam) => {
+            console.log(eventParam)
+        })
     }, []);
 
     return (
-        <div className="bordered 籍贯">
-            <h2>全市犯罪人员籍贯分布地</h2>
+        <div className="bordered the-map">
+            <h2>全国工厂分布地</h2>
             <div className="wrapper">
                 <div ref={divRef} className="chart"/>
                 <div className="legend bordered">
