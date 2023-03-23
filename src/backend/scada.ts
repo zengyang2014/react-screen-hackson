@@ -1,5 +1,5 @@
 class ScadaCache {
-  private cache: {
+  private readonly cache: {
     plcPortValues: {
       [key: string]: any;
     };
@@ -12,6 +12,7 @@ class ScadaCache {
         qualified: number;
       };
     };
+    energyTrends: number[];
   };
 
   constructor() {
@@ -24,6 +25,7 @@ class ScadaCache {
           qualified: 0,
         },
       },
+      energyTrends: [3.01, 2.6, 3.65, 3.33, 3.12, 3.40, 3.28, 3.51]
     };
   }
 
