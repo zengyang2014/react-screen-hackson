@@ -83,6 +83,11 @@ export const generateData = () => {
         ),
       };
     }
+    const defectiveReasonData = []
+    for(let i =0; i < 9; i++){
+      defectiveReasonData.push(randomNum(0, 5))
+    }
+
     data[city] = {
       productStatus: {
         month: monthData,
@@ -102,23 +107,7 @@ export const generateData = () => {
           randomScope.inventory.materialC.max
         ),
       },
-      defectiveReason: {
-        breakage: {
-          calibrationFailed: randomNum(0, 20),
-          programError: randomNum(0, 20),
-          mispositioning: randomNum(0, 20),
-        },
-        createPublicKey: {
-          temperatureError: randomNum(0, 20),
-          paramsAbnormal: randomNum(0, 20),
-          toolbreakage: randomNum(0, 20),
-        },
-        cut: {
-          tooTight: randomNum(0, 20),
-          conveyorForeign: randomNum(0, 20),
-          machineForeign: randomNum(0, 20),
-        },
-      },
+      defectiveReason: defectiveReasonData,
     };
   }
 
