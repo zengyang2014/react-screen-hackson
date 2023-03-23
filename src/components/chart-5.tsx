@@ -3,7 +3,12 @@ import { useRecoilState } from "recoil";
 import { mockData } from "../pageData/mockData";
 import { scadaCache } from "../state/store";
 
-export const Chart5 = () => {
+export const Chart5 = (appData) => {
+  let totalUsed = 0
+  if (appData.appData.source !== undefined) {
+    totalUsed = appData.appData.source.product.defective + appData.appData.source.product.qualified
+  }
+
   const [scada] = useRecoilState(scadaCache);
   const allA =
     scada.baoding.inventory.materialA +
@@ -37,27 +42,27 @@ export const Chart5 = () => {
         <tbody>
           <tr>
             <td>材料A</td>
-            <td>{scada.baoding.inventory.materialA}</td>
+            <td>{scada.baoding.inventory.materialA - totalUsed}</td>
             <td>{mockData.chengdu.inventory.materialA}</td>
             <td>{mockData.shanghai.inventory.materialA}</td>
             <td>{mockData.xian.inventory.materialA}</td>
-            <td>{allA}</td>
+            <td>{allA - totalUsed}</td>
           </tr>
           <tr>
             <td>材料B</td>
-            <td>{scada.baoding.inventory.materialB}</td>
+            <td>{scada.baoding.inventory.materialB - totalUsed}</td>
             <td>{mockData.chengdu.inventory.materialB}</td>
             <td>{mockData.shanghai.inventory.materialB}</td>
             <td>{mockData.xian.inventory.materialB}</td>
-            <td>{allB}</td>
+            <td>{allB - totalUsed}</td>
           </tr>
           <tr>
             <td>材料C</td>
-            <td>{scada.baoding.inventory.materialC}</td>
+            <td>{scada.baoding.inventory.materialC - totalUsed}</td>
             <td>{mockData.chengdu.inventory.materialC}</td>
             <td>{mockData.shanghai.inventory.materialC}</td>
             <td>{mockData.xian.inventory.materialC}</td>
-            <td>{allC}</td>
+            <td>{allC - totalUsed}</td>
           </tr>
         </tbody>
       </table>
