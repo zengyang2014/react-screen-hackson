@@ -2,21 +2,39 @@ import React, {useEffect, useRef} from 'react';
 import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from "../shared/px";
+import { useRecoilState } from 'recoil';
+import { provinceState, scadaCache } from '../state/store';
 export const Chart13 = () => {
     const divRef = useRef(null);
+    const [province] = useRecoilState(provinceState)
+    const [cache] = useRecoilState(scadaCache)
+    let monthFault = {}
+    if(province === 'China'){
+        for(let i = 1; i < 13; i++){
+            monthFault[i] = Object.values(cache).reduce((result, item)=>{
+                return result + item.faultTime.month[i]
+            }, 0)
+        }
+    }else{
+        monthFault = cache.baoding.faultTime.month
+    }
     const data = [
-        {value: 0.08, name: '东岗路'},
-        {value: 0.06, name: '段家滩'},
-        {value: 0.11, name: '雁北'},
-        {value: 0.09, name: '五泉山'},
-        {value: 0.12, name: '中山路'},
-        {value: 0.06, name: '庆阳路'},
-        {value: 0.08, name: '武都路'},
-        {value: 0.08, name: '酒泉路'},
-        {value: 0.08, name: '天水路'},
+        {value: monthFault[4], name: '4'},
+        {value: monthFault[5], name: '5'},
+        {value: monthFault[6], name: '6'},
+        {value: monthFault[7], name: '7'},
+        {value: monthFault[8], name: '8'},
+        {value: monthFault[9], name: '9'},
+        {value: monthFault[10], name: '10'},
+        {value: monthFault[11], name: '11'},
+        {value: monthFault[12], name: '12'},
+        {value: monthFault[1], name: '1'},
+        {value: monthFault[2], name: '2'},
+        {value: monthFault[3], name: '3'},
     ];
     useEffect(() => {
         var myChart = echarts.init(divRef.current);
+
         myChart.setOption(createEchartsOptions({
             xAxis: {
                 data: data.map(i => i.name),
@@ -45,7 +63,7 @@ export const Chart13 = () => {
                 },
                 axisLabel: {
                     formatter(value) {
-                        return (value * 100).toFixed(0) + '%';
+                        return (value);
                     }
                 }
             },
@@ -61,7 +79,7 @@ export const Chart13 = () => {
                 }]),
             }]
         }));
-    }, []);
+    }, [province, cache]);
 
     return (
         <div ref={divRef} className="chart">

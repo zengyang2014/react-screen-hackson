@@ -2,21 +2,39 @@ import React, {useEffect, useRef} from 'react';
 import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from '../shared/px';
+import { useRecoilState } from 'recoil';
+import { provinceState, scadaCache } from '../state/store';
 
 export const Chart12 = () => {
     const divRef = useRef(null);
-    const data = [
-        {value: 0.08, name: '东岗路'},
-        {value: 0.06, name: '段家滩'},
-        {value: 0.11, name: '雁北'},
-        {value: 0.09, name: '五泉山'},
-        {value: 0.12, name: '中山路'},
-        {value: 0.06, name: '庆阳路'},
-        {value: 0.08, name: '武都路'},
-        {value: 0.08, name: '酒泉路'},
-        {value: 0.08, name: '天水路'},
-    ];
+    const [province] = useRecoilState(provinceState)
+    const [cache] = useRecoilState(scadaCache)
+
     useEffect(() => {
+        let monthFault = {}
+        if(province === 'China'){
+            for(let i = 1; i < 13; i++){
+                monthFault[i] = Object.values(cache).reduce((result, item)=>{
+                    return result + item.faultTime.month[i]
+                }, 0)
+            }
+        }else{
+            monthFault = cache.baoding.faultTime.month
+        }
+        const data = [
+            {value: monthFault[4], name: '4'},
+            {value: monthFault[5], name: '5'},
+            {value: monthFault[6], name: '6'},
+            {value: monthFault[7], name: '7'},
+            {value: monthFault[8], name: '8'},
+            {value: monthFault[9], name: '9'},
+            {value: monthFault[10], name: '10'},
+            {value: monthFault[11], name: '11'},
+            {value: monthFault[12], name: '12'},
+            {value: monthFault[1], name: '1'},
+            {value: monthFault[2], name: '2'},
+            {value: monthFault[3], name: '3'},
+        ];
         let myChart = echarts.init(divRef.current);
         myChart.setOption(createEchartsOptions({
             xAxis: {show: false},
@@ -30,7 +48,7 @@ export const Chart12 = () => {
                 itemWidth: px(10),
                 itemHeight: px(10),
                 formatter(name) {
-                    const value = data.find(i => i.name === name)?.value * 100 + '%';
+                    const value = data.find(i => i.name === name)?.value;
                     return name + ' ' + value;
                 }
             },
@@ -52,7 +70,7 @@ export const Chart12 = () => {
                 }
             ]
         }));
-    }, []);
+    }, [province, cache]);
 
     return (
         <div className="chart12">

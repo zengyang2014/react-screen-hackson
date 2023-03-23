@@ -26,6 +26,11 @@ export type MockDataType = Partial<
         materialC: number;
       };
       defectiveReason: number[];
+      faultTime: {
+        month: {
+          [key: number]: number
+        }
+      }
     }
   >
 >;

@@ -62,7 +62,7 @@ export const Home = () => {
             </div>
           </div>
           <div className="bordered row2 non-failure-time" style={{height: "47%"}}>
-            <h2>{headerTextGen(province)}平均故障时间</h2>
+            <h2>{headerTextGen(province)}产线月故障时间</h2>
             <div className="charts" style={{height: `${px(350)} !important`}}>
               <Chart12/>
               <Chart13/>
