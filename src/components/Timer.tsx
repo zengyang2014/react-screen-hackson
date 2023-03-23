@@ -10,7 +10,7 @@ export const Timer = () => {
   const [timer, setTimer] = useState("")
 
   useEffect(() => {
-    setInterval(() => {
+    const intervalId = setInterval(() => {
       const time = new Date();
       const year = formatDigits(time.getFullYear(), 4)
       const month = formatDigits(time.getMonth() + 1, 2);
@@ -21,6 +21,10 @@ export const Timer = () => {
       const timeString = `${year}年${month}月${date} ${hour}:${minute}:${seconds}`
       setTimer(timeString)
     }, 1000)
+
+    return () => {
+      clearInterval(intervalId)
+    }
   }, [])
   return (
     <div className={"title-timer"}>

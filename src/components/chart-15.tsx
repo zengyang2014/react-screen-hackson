@@ -6,18 +6,18 @@ import "./chart-15.scss";
 import { mockData } from "../pageData/mockData";
 import { useRecoilState } from "recoil";
 import { provinceState } from "../state/store";
+import FlipNumbers from 'react-flip-numbers';
 
 export const Chart15 = (appData) => {
   const divRef = useRef(null);
   const [province] = useRecoilState(provinceState);
-
   const defective = appData.appData.source?.product?.defective || 0
-
+  const product = appData.appData.source?.product?.qualified || 0
 
   const currentTotalNumber = 10000
   const currentDefective = 240
   const totalDefective = currentDefective + defective
-  const perfectRate = 1 - ((currentDefective + defective) / (currentTotalNumber + defective))
+  const perfectRate = 1 - ((currentDefective + defective) / (currentTotalNumber + defective + product))
 
   useEffect(() => {
     if(province === 'China') {
@@ -91,7 +91,9 @@ export const Chart15 = (appData) => {
           <span className='passOnceSpan1'>投产以来一次合格率</span>
           <span className='passOnceSpan2'>{(perfectRate * 100).toFixed(2)}%</span>
             <span className='passOnceSpan3'>一次未合格个数</span>
-            <span className='passOnceSpan4'>{totalDefective}</span>
+            <div className='passOnceSpan4'>
+              <FlipNumbers color='#f7a110' numberStyles={{fontWeight: 700}} height={50} width={30} background="inherits" play perspective={500} numbers={totalDefective.toString()} />
+            </div>
         </>}
     </div>
   );

@@ -1,11 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
 import * as echarts from 'echarts';
-import {px} from '../shared/px';
-import {baseEchartOptions} from '../shared/base-echart-options';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {useRecoilState} from "recoil";
 import {provinceState} from "../state/store";
 import {headerTextGen} from "./util/headerTextGen";
+import FlipNumbers from "react-flip-numbers";
+import './chart-4.scss'
 
 export const Chart4 = (data) => {
     const divRef = useRef(null);
@@ -76,7 +76,7 @@ export const Chart4 = (data) => {
         <div className="bordered daily-productive-sort city">
             <h2>{headerTextGen(province)}当日产量</h2>
             {province === 'HeBei'&&
-              <span className='rank'>{productive}</span>
+              <span className='rank' style={{top: '42%'}}><FlipNumbers color='#f7a110' height={50} width={30} background="inherits" play perspective={500} numbers={productive.toString()} /></span>
             }
 
         </div>
