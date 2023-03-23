@@ -69,6 +69,7 @@ export const Chart3 = () => {
             },
             yAxis: {
                 type: 'value',
+                data: [200, 400, 600, 800],
                 splitLine: {lineStyle: {color: '#073E78'}},
                 axisLabel: {
                     formatter(val) {
@@ -85,8 +86,10 @@ export const Chart3 = () => {
         }));
     }, [province]);
 
+    const className = province === 'China' ? 'bordered daily-productive' : 'bordered daily-productive city'
+
     return (
-        <div className="bordered daily-productive">
+        <div className={className}>
             <h2>{headerTextGen(province)}日总产量</h2>
             <div ref={divRef} className="chart"/>
         </div>

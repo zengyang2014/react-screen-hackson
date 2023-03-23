@@ -11,70 +11,79 @@ export const Chart15 = () => {
   const divRef = useRef(null);
   const [province] = useRecoilState(provinceState);
   useEffect(() => {
-    var myChart = echarts.init(divRef.current);
-    const months = [4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3];
-    const monthData = months.map((month) => {
-      if (province === "China") {
-        return (
-          mockData.baoding.productStatus.month[month].defective +
-          mockData.chengdu.productStatus.month[month].defective +
-          mockData.xian.productStatus.month[month].defective +
-          mockData.shanghai.productStatus.month[month].defective
-        );
-      } else {
-        return mockData.baoding.productStatus.month[month].defective;
-      }
-    });
-    myChart.setOption(
-      createEchartsOptions({
-        color: "#F7A110",
-        xAxis: {
-          type: "category",
-          boundaryGap: false,
-          data: months,
-          splitLine: { show: true, lineStyle: { color: "#073E78" } },
-          axisTick: { show: false },
-          axisLine: { show: false },
-        },
-        yAxis: {
-          type: "value",
-          splitLine: { lineStyle: { color: "#073E78" } },
-          axisLabel: {
-            formatter(val) {
-              return val;
+    if(province === 'China') {
+      var myChart = echarts.init(divRef.current);
+      const months = [4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3];
+      const monthData = months.map((month) => {
+        if (province === "China") {
+          return (
+            mockData.baoding.productStatus.month[month].defective +
+            mockData.chengdu.productStatus.month[month].defective +
+            mockData.xian.productStatus.month[month].defective +
+            mockData.shanghai.productStatus.month[month].defective
+          );
+        } else {
+          return mockData.baoding.productStatus.month[month].defective;
+        }
+      });
+      myChart.setOption(
+        createEchartsOptions({
+          color: "#F7A110",
+          xAxis: {
+            type: "category",
+            boundaryGap: false,
+            data: months,
+            splitLine: { show: true, lineStyle: { color: "#073E78" } },
+            axisTick: { show: false },
+            axisLine: { show: false },
+          },
+          yAxis: {
+            type: "value",
+            splitLine: { lineStyle: { color: "#073E78" } },
+            axisLabel: {
+              formatter(val) {
+                return val;
+              },
             },
           },
-        },
-        series: [
-          {
-            type: "line",
-            data: monthData,
-            symbol: "circle",
-            symbolSize: px(12),
-            lineStyle: { width: px(2) },
-            areaStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {
-                  offset: 0,
-                  color: "#F7A110",
-                },
-                {
-                  offset: 1,
-                  color: "#1B1D52",
-                },
-              ]),
+          series: [
+            {
+              type: "line",
+              data: monthData,
+              symbol: "circle",
+              symbolSize: px(12),
+              lineStyle: { width: px(2) },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: "#F7A110",
+                  },
+                  {
+                    offset: 1,
+                    color: "#1B1D52",
+                  },
+                ]),
+              },
             },
-          },
-        ],
-      })
-    );
+          ],
+        })
+      );
+    }
   }, [province]);
 
   return (
     <div className="年龄段-图3">
-      <div ref={divRef} className="chart">
+      {province === 'China' && <div ref={divRef} className="chart">
         {" "}
-      </div>
+      </div>}
+      {province === 'HeBei' &&
+        <>
+          <span className='passOnceSpan1'>当前产线一次合格率</span>
+          <span className='passOnceSpan2'>97.60%</span>
+            <span className='passOnceSpan3'>一次未合格个数</span>
+            <span className='passOnceSpan4'>240</span>
+        </>}
     </div>
   );
 };
