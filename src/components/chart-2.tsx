@@ -67,7 +67,7 @@ export const Chart2 = () => {
 
     return (
         <div className="bordered daily-productive-sort">
-            <h2>{headerTextGen(province)}日产量排名</h2>
+            <h2>{headerTextGen(province)}当日产量排名</h2>
             {province === 'China'&&
                 <><div ref={divRef} className="chart"/>
                 <div className="legend">

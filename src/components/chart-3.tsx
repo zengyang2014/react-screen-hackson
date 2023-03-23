@@ -15,7 +15,7 @@ export const Chart3 = () => {
     const [province] = useRecoilState(provinceState)
 
     useEffect(() => {
-        const days = [18, 19, 20, 21, 22, 23, 24]
+        const days = [18, 19, 20, 21, 22, 23]
         let myChart = echarts.init(divRef.current);
         let series = [
             {
