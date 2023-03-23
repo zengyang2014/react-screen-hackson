@@ -84,7 +84,7 @@ export const Home = ({data}) => {
                   width: "100%"
                 }}>
                   <div></div>
-                  <Chart16 />
+                  <Chart16 appData={data} />
                 </div> :
                 <Chart14/>
             }

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "./chart-15.scss";
 import "./chart-16.scss"
 
@@ -10,40 +10,10 @@ const format = (time: Date) => {
   return `${time.getFullYear()}-${_(time.getMonth() + 1 + '')}-${_(time.getDate())} ${time.getHours()}:${_(time.getMinutes())}:${_(time.getSeconds())}`
 }
 
-export const Chart16 = (appData) => {
+export const Chart16 = ({appData}) => {
 
-  const data = [
-    {
-      id: 1,
-      date: new Date(),
-      reason: 6,
-      location: "保定工厂",
-    },
-    {
-      id: 2,
-      date: new Date(),
-      reason: 5,
-      location: "保定工厂",
-    },
-    {
-      id: 3,
-      date: new Date(),
-      reason: 1,
-      location: "保定工厂",
-    },
-    {
-      id: 4,
-      date: new Date(),
-      reason: 3,
-      location: "保定工厂",
-    },
-    {
-      id: 5,
-      date: new Date(),
-      reason: 3,
-      location: "保定工厂",
-    }
-  ]
+  const [data, setData] = useState([])
+  const [oldData, setOldData] = useState([])
 
   const reasonArray = [
     "机器人校准失败",
@@ -57,7 +27,23 @@ export const Chart16 = (appData) => {
     "机床内异物"]
 
   useEffect(() => {
-    console.log(appData)
+    if (appData?.source?.faultReason){
+      let faultIndex = -1;
+      const newData = appData.source.faultReason;
+      for (let i = 0; i < newData.length; i++) {
+        if (oldData[i] !== newData[i] && newData[i] > 0){
+          faultIndex = i;
+          setOldData(appData.source.faultReason)
+          break
+        }
+      }
+      if (faultIndex !== -1){
+        setData([
+          {reason: faultIndex, date: new Date()},
+          ...data
+        ])
+      }
+    }
   }, [appData])
 
   return (

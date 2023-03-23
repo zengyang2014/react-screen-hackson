@@ -5,7 +5,7 @@
     border: px(2) rgba(26, 69, 250, 0.33) solid;
   }
   50% {
-    border: px(4) rgba(26, 69, 250, 1) dashed;
+    border: px(2) rgba(126, 169, 250, 1) dashed;
   }
   100% {
     border: px(2) rgba(26, 69, 250, 0.33) solid;
@@ -52,6 +52,6 @@
     animation-name: spark;
     animation-duration: 1s;
     animation-timing-function: linear;
-    animation-iteration-count:10;
+    animation-iteration-count: infinite;
   }
 }
