@@ -2,24 +2,6 @@ import { Citys } from "./geo";
 
 import { generateData } from "./generate";
 
-interface DefectiveReasonCategory {
-  breakage: {
-    calibrationFailed: number;
-    programError: number;
-    mispositioning: number;
-  };
-  createPublicKey: {
-    temperatureError: number;
-    paramsAbnormal: number;
-    toolbreakage: number;
-  };
-  cut: {
-    tooTight: Number;
-    conveyorForeign: number;
-    machineForeign: number;
-  };
-}
-
 export type MockDataType = Partial<
   Record<
     Citys,
@@ -43,7 +25,7 @@ export type MockDataType = Partial<
         materialB: number;
         materialC: number;
       };
-      defectiveReason: DefectiveReasonCategory;
+      defectiveReason: number[];
     }
   >
 >;
