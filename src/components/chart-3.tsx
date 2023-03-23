@@ -42,7 +42,6 @@ export const Chart3 = () => {
 
         if(province !== 'China'){
             series = [series[3]]
-            console.log(series)
         }
         myChart.clear()
         myChart.setOption(createEchartsOptions({

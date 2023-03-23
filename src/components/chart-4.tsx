@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import * as echarts from 'echarts';
 import {px} from '../shared/px';
 import {baseEchartOptions} from '../shared/base-echart-options';
@@ -11,6 +11,9 @@ export const Chart4 = (data) => {
     const divRef = useRef(null);
     const myChart = useRef(null);
     const [province] = useRecoilState(provinceState)
+
+    const [productive, setProductivity] = useState(0)
+
     const cityData = [
         {name: '保定', 2011: 5},
         {name: '成都', 2011: 4},
@@ -65,13 +68,15 @@ export const Chart4 = (data) => {
         }
     }, [province]);
 
-    // const totalNumber = data.baoding.productStatus.day['24'].capacity
+    useEffect(() => {
+        setProductivity(data.data.source.product.qualified || 0)
+    }, [data])
 
     return (
         <div className="bordered daily-productive-sort city">
             <h2>{headerTextGen(province)}日产量</h2>
             {province === 'HeBei'&&
-              <span className='rank'>{0}</span>
+              <span className='rank'>{productive}</span>
             }
 
         </div>

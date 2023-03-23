@@ -35,7 +35,6 @@ export const Chart1 = () => {
           axisLabel: {
             fontSize: px(6),
             formatter(val) {
-              console.log(val);
               if (val.length > 2) {
                 const arr = val.split("");
                 arr.splice(2, 0, "\n");
