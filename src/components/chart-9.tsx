@@ -52,7 +52,7 @@ export const Chart9 = ({data}) => {
       },
       series: [{
         type: 'line',
-        data: [3.01, 2.6, 3.65, 3.33, 3.12, 3.40, 3.28, 3.51],
+        data: powerValue,
         symbol: 'circle',
         symbolSize: px(12),
         lineStyle: {width: px(2)},
@@ -67,7 +67,7 @@ export const Chart9 = ({data}) => {
         }
       }]
     }));
-  }, []);
+  }, [province]);
 
   return (
     <div className="年龄段-图3">
