@@ -21,7 +21,7 @@ export const Chart15 = (appData) => {
 
   useEffect(() => {
     if(province === 'China') {
-      var myChart = echarts.init(divRef.current);
+      let myChart = echarts.init(divRef.current);
       const months = [4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3];
       const monthData = months.map((month) => {
         if (province === "China") {

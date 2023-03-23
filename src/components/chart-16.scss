@@ -1,0 +1,57 @@
+@import "../shared/helper";
+
+@keyframes spark {
+  0% {
+    border: px(2) rgba(26, 69, 250, 0.33) solid;
+  }
+  50% {
+    border: px(4) rgba(26, 69, 250, 1) dashed;
+  }
+  100% {
+    border: px(2) rgba(26, 69, 250, 0.33) solid;
+  }
+}
+
+.chart-16-box {
+
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-height: px(330);
+  overflow: hidden;
+
+  > div {
+    text-align: center;
+    margin-top: px(20)
+  }
+  > ul {
+    display: flex;
+    margin-top: px(10);
+    flex-direction: column;
+    width: 100%;
+  }
+  .list-item {
+    text-align: left;
+    width: 100%;
+    font-size: px(21);
+    vertical-align: middle;
+    display: inline-block;
+    border: px(2) rgba(26, 69, 250, 0.33) solid;
+    border-radius: 3px;
+    padding: px(15) px(4);
+    margin-bottom: px(5);
+
+    > span {
+      &:nth-child(2) {
+        color: #f7a110;
+      }
+    }
+  }
+
+  .spark {
+    animation-name: spark;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count:10;
+  }
+}

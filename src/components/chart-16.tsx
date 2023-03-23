@@ -1,100 +1,75 @@
-import React, { useEffect, useRef } from "react";
-import * as echarts from "echarts";
-import { createEchartsOptions } from "../shared/create-echarts-options";
-import { px } from "../shared/px";
+import React, {useEffect, useRef} from "react";
 import "./chart-15.scss";
-import { mockData } from "../pageData/mockData";
-import { useRecoilState } from "recoil";
-import { provinceState } from "../state/store";
+import "./chart-16.scss"
 
-export const Chart15 = (appData) => {
-  const divRef = useRef(null);
-  const [province] = useRecoilState(provinceState);
+const _ = (str: string | number) => {
+  return (str + '').padStart(2, "0")
+}
 
-  let defective = 0
-  if (appData.source !== undefined) {
-    defective = appData.source.product.defective
-  }
+const format = (time: Date) => {
+  return `${time.getFullYear()}-${_(time.getMonth() + 1 + '')}-${_(time.getDate())} ${time.getHours()}:${_(time.getMinutes())}:${_(time.getSeconds())}`
+}
 
-  const currentTotalNumber = 10000
-  const currentDefective = 240
-  const totalDefective = currentDefective + defective
-  const perfectRate = 1 - ((currentDefective + defective) / (currentTotalNumber + defective))
+export const Chart16 = (appData) => {
+
+  const data = [
+    {
+      id: 1,
+      date: new Date(),
+      reason: 6,
+      location: "保定工厂",
+    },
+    {
+      id: 2,
+      date: new Date(),
+      reason: 5,
+      location: "保定工厂",
+    },
+    {
+      id: 3,
+      date: new Date(),
+      reason: 1,
+      location: "保定工厂",
+    },
+    {
+      id: 4,
+      date: new Date(),
+      reason: 3,
+      location: "保定工厂",
+    },
+    {
+      id: 5,
+      date: new Date(),
+      reason: 3,
+      location: "保定工厂",
+    }
+  ]
+
+  const reasonArray = [
+    "机器人校准失败",
+    "机床加工程序错误",
+    "传送带定位阀错误",
+    "加工温度异常",
+    "加工参数异常",
+    "加工刀具破损",
+    "机械爪过紧",
+    "传送带异物",
+    "机床内异物"]
 
   useEffect(() => {
-    if(province === 'China') {
-      var myChart = echarts.init(divRef.current);
-      const months = [4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3];
-      const monthData = months.map((month) => {
-        if (province === "China") {
-          return (
-            mockData.baoding.productStatus.month[month].defective +
-            mockData.chengdu.productStatus.month[month].defective +
-            mockData.xian.productStatus.month[month].defective +
-            mockData.shanghai.productStatus.month[month].defective
-          );
-        } else {
-          return mockData.baoding.productStatus.month[month].defective;
-        }
-      });
-      myChart.setOption(
-        createEchartsOptions({
-          color: "#F7A110",
-          xAxis: {
-            type: "category",
-            boundaryGap: false,
-            data: months,
-            splitLine: { show: true, lineStyle: { color: "#073E78" } },
-            axisTick: { show: false },
-            axisLine: { show: false },
-          },
-          yAxis: {
-            type: "value",
-            splitLine: { lineStyle: { color: "#073E78" } },
-            axisLabel: {
-              formatter(val) {
-                return val;
-              },
-            },
-          },
-          series: [
-            {
-              type: "line",
-              data: monthData,
-              symbol: "circle",
-              symbolSize: px(12),
-              lineStyle: { width: px(2) },
-              areaStyle: {
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  {
-                    offset: 0,
-                    color: "#F7A110",
-                  },
-                  {
-                    offset: 1,
-                    color: "#1B1D52",
-                  },
-                ]),
-              },
-            },
-          ],
-        })
-      );
-    }
-  }, [province]);
+    console.log(appData)
+  }, [appData])
 
   return (
-    <div className="年龄段-图3">
-      {province === 'China' && <div ref={divRef} className="chart">
-        {" "}
-      </div>}
-      {province === 'HeBei' &&
-        <>
-          <span className='passOnceSpan1'>投产以来一次合格率</span>
-          <span className='passOnceSpan2'>{(perfectRate * 100).toFixed(2)}%</span>
-            <span className='passOnceSpan3'>一次未合格个数</span>
-            <span className='passOnceSpan4'>{totalDefective}</span>
-        </>}
+    <div className="chart-16-box" style={{flex: "grow"}}>
+      <ul>
+        {data.map((d, index) =>
+          <li key={d.id} className={`list-item ${index === 0? 'spark': ''}`}>
+            <span>{format(d.date)}</span>,
+            因【<span>[{reasonArray[d.reason]}</span>】产品生产不合格
+          </li>
+        )}
+      </ul>
     </div>
   );
 };
