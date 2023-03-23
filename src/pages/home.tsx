@@ -13,7 +13,7 @@ import {Chart13} from "../components/chart-13";
 import {Chart14} from "../components/chart-14";
 import {Chart15} from "../components/chart-15";
 import {px} from "../shared/px";
-import {Timer}from '../components/Timer'
+import {Timer} from '../components/Timer'
 import {useRecoilState} from "recoil";
 import {provinceState} from "../state/store";
 import {headerTextGen} from "../components/util/headerTextGen";
@@ -39,13 +39,13 @@ export const Home = ({data}) => {
         </section>
         <section className="section2">
           <Chart3/>
-          {province === 'HeBei'&&<Chart4 data={data}/>}
+          {province === 'HeBei' && <Chart4 data={data}/>}
         </section>
         <section className="bordered section3">
           <Chart5 appData={data}/>
         </section>
         <section className="section4" style={{height: "100%"}}>
-            <Chart6/>
+          <Chart6/>
         </section>
         <section className="section7">
           <div className="bordered 年龄段" style={{height: `${px(380)}px`}}>
@@ -75,7 +75,16 @@ export const Home = ({data}) => {
         <section className="section6">
           <div className="bordered row3 chart-14-box">
             <h2>{headerTextGen(province)}次品原因分析</h2>
-            <Chart14/>
+            {
+              province === "HeBei" ?
+                <div style={{
+                  display: "flex",
+                  flexDirection: "row"
+                }}>
+
+                </div> :
+                <Chart14/>
+            }
           </div>
         </section>
       </main>

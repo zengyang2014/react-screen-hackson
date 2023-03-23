@@ -69,12 +69,12 @@ export const Chart4 = (data) => {
     }, [province]);
 
     useEffect(() => {
-        setProductivity(data.data.source.product.qualified || 0)
+        setProductivity(data.data.source?.product?.qualified || 0)
     }, [data])
 
     return (
         <div className="bordered daily-productive-sort city">
-            <h2>{headerTextGen(province)}日产量</h2>
+            <h2>{headerTextGen(province)}当日产量</h2>
             {province === 'HeBei'&&
               <span className='rank'>{productive}</span>
             }
