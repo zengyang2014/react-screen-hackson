@@ -11,8 +11,8 @@ const randomScope = {
         min: 10000,
       },
       defective: {
-        max: 60,
-        min: 30,
+        max: 1,
+        min: 0,
       },
     },
     day: {

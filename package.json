@@ -2,7 +2,7 @@
   "name": "big-screen-demo-01",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 8080",
     "build": "vite build",
     "serve": "vite preview",
     "backend": "nodemon --watch src/backend -e ts,tsx --exec ts-node ./src/backend/index.ts"

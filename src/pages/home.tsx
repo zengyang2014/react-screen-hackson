@@ -19,7 +19,7 @@ import {provinceState} from "../state/store";
 import {headerTextGen} from "../components/util/headerTextGen";
 
 
-export const Home = () => {
+export const Home = ({data}) => {
   const year = new Date().getFullYear();
   const [province] = useRecoilState(provinceState)
 
@@ -50,7 +50,8 @@ export const Home = () => {
             <h2>{headerTextGen(province)}能效统计</h2>
             <div className="charts">
               <Chart7/>
-              <Chart9/>
+              {/* 能效统计 */}
+              <Chart9 data={data}/>
             </div>
           </div>
         </section>

@@ -11,9 +11,8 @@ function App() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      axios.get('http://0.0.0.0:3000/scada').then((response) => {
-        console.log(response.data)
-        setAppData(response.data)
+      axios.get('http://127.0.0.1:3000/scada').then((response) => {
+        setAppData(JSON.parse(response.data.data))
       }).catch((error) => {
         console.log(error)
       })
@@ -24,7 +23,6 @@ function App() {
     }
   }, [])
 
-  console.log(appData)
 
   return (
     <RecoilRoot>
@@ -32,7 +30,7 @@ function App() {
         <HashRouter>
           <Switch>
             <Route exact path="/">
-              <Home/>
+              <Home data={appData}/>
             </Route>
             <Route exact path="/config">
               <Config/>
