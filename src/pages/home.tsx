@@ -26,7 +26,7 @@ export const Home = ({data}) => {
 
   return (
     <div className="home">
-      <header style={{backgroundImage: `url(${headerBg})`}} className={"title"}>
+      <header style={{backgroundImage: `url(${headerBg})`, paddingTop: px(5)}} className={"title"}>
         <div className={"title-text"}>
           工易赛博坦智能汽车制造产线
         </div>
