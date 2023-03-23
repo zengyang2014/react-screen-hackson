@@ -1,31 +1,7 @@
+import {Citys} from './geo'
 const randomNum = (minNum: number, maxNum: number) => {
   return Math.floor(Math.random() * (maxNum - minNum + 1) + minNum);
 };
-
-enum Citys {
-  XiAn = "xian",
-  ChengDu = "chengdu",
-  ShangHai = "shanghai",
-  BaoDing = "baoding",
-}
-
-interface DefectiveReasonCategory {
-  breakage: {
-    calibrationFailed: number;
-    programError: number;
-    mispositioning: number;
-  };
-  createPublicKey: {
-    temperatureError: number;
-    paramsAbnormal: number;
-    toolbreakage: number;
-  };
-  cut: {
-    tooTight: Number;
-    conveyorForeign: number;
-    machineForeign: number;
-  };
-}
 
 const randomScope = {
   productStatus: {
@@ -66,36 +42,17 @@ const randomScope = {
   },
 };
 
-export const mockData: Partial<
-  Record<
-    Citys,
-    {
-      productStatus: {
-        month: {
-          [key: number]: {
-            capacity: number;
-            defective: number;
-          };
-        };
-        today: {
-          capacity: number;
-          defective: number;
-        };
-      };
-      inventory: {
-        materialA: number;
-        materialB: number;
-        materialC: number;
-      };
-      defectiveReason: DefectiveReasonCategory;
-    }
-  >
-> = {};
-
-const generateData = () => {
+export const generateData = () => {
+  const data = {}
   for (let i in Citys) {
     const city = Citys[i];
     const monthData: {
+      [key: number]: {
+        capacity: number;
+        defective: number;
+      };
+    } = {};
+    const dayData: {
       [key: number]: {
         capacity: number;
         defective: number;
@@ -113,19 +70,23 @@ const generateData = () => {
         ),
       };
     }
-    mockData[city] = {
+
+    for (let d = 18; d < 25; d++) {
+      dayData[d] = {
+        capacity: randomNum(
+          randomScope.productStatus.day.capacity.min,
+          randomScope.productStatus.day.capacity.max
+        ),
+        defective: randomNum(
+          randomScope.productStatus.day.defective.min,
+          randomScope.productStatus.day.defective.max
+        ),
+      };
+    }
+    data[city] = {
       productStatus: {
         month: monthData,
-        today: {
-          capacity: randomNum(
-            randomScope.productStatus.day.capacity.min,
-            randomScope.productStatus.day.capacity.max
-          ),
-          defective: randomNum(
-            randomScope.productStatus.day.defective.min,
-            randomScope.productStatus.day.defective.max
-          ),
-        },
+        day: dayData,
       },
       inventory: {
         materialA: randomNum(
@@ -160,6 +121,6 @@ const generateData = () => {
       },
     };
   }
-};
 
-generateData()
+  return data
+};

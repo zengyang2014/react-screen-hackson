@@ -6,13 +6,45 @@ import "./chart-3.scss"
 import {useRecoilState} from "recoil";
 import {provinceState} from "../state/store";
 import {headerTextGen} from "./util/headerTextGen";
+import { CityNames, Citys } from '../pageData/geo';
+import { mockData } from '../pageData/mockData';
 
 
 export const Chart3 = () => {
     const divRef = useRef(null);
     const [province] = useRecoilState(provinceState)
+    
     useEffect(() => {
+        const days = [18, 19, 20, 21, 22, 23, 24]
         var myChart = echarts.init(divRef.current);
+        let series = [
+            {
+                name: CityNames.chengdu,
+                type: 'line',
+                data: Object.values(mockData.chengdu.productStatus.day).map((item)=>{return item.capacity})
+            },
+            {
+                name: CityNames.shanghai,
+                type: 'line',
+                data: Object.values(mockData.shanghai.productStatus.day).map((item)=>{return item.capacity})
+            },
+            {
+                name:  CityNames.xian,
+                type: 'line',
+                data: Object.values(mockData.xian.productStatus.day).map((item)=>{return item.capacity})
+            },
+            {
+                name: CityNames.baoding,
+                type: 'line',
+                data: Object.values(mockData.baoding.productStatus.day).map((item)=>{return item.capacity})
+            }
+        ]
+
+        if(province !== 'China'){
+            series = [series[3]]
+            console.log(series)
+        }
+        myChart.clear()
         myChart.setOption(createEchartsOptions({
             legend: {
                 bottom: px(10),
@@ -30,7 +62,7 @@ export const Chart3 = () => {
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018],
+                data: days,
                 splitLine: {show: true, lineStyle: {color: '#073E78'}},
                 axisTick: {show: false},
                 axisLine: {show: false},
@@ -40,44 +72,18 @@ export const Chart3 = () => {
                 splitLine: {lineStyle: {color: '#073E78'}},
                 axisLabel: {
                     formatter(val) {
-                        return val * 100 + '%';
+                        return val;
                     }
                 }
             },
-            series: [
-                {
-                    name: '抢劫',
-                    type: 'line',
-                    data: [0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09].reverse()
-                },
-                {
-                    name: '醉驾',
-                    type: 'line',
-                    data: [0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.10].reverse()
-                },
-                {
-                    name: '盗窃',
-                    type: 'line',
-                    data: [0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.10, 0.11].reverse()
-                },
-                {
-                    name: '故意杀人',
-                    type: 'line',
-                    data: [0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.10, 0.11, 0.12].reverse()
-                },
-                {
-                    name: '故意伤人',
-                    type: 'line',
-                    data: [0.05, 0.06, 0.07, 0.08, 0.09, 0.10, 0.11, 0.12, 0.13].reverse()
-                }
-            ].map(obj => ({
+            series: series.map(obj => ({
                 ...obj,
                 symbol: 'circle',
                 symbolSize: px(12),
                 lineStyle: {width: px(2)}
             }))
         }));
-    }, []);
+    }, [province]);
 
     return (
         <div className="bordered daily-productive">
