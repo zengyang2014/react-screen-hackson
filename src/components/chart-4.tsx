@@ -69,7 +69,7 @@ export const Chart4 = (data) => {
     }, [province]);
 
     useEffect(() => {
-        setProductivity(data.data.source.product.qualified || 0)
+        setProductivity(data.data.source?.product?.qualified || 0)
     }, [data])
 
     return (
