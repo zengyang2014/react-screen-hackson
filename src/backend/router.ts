@@ -25,10 +25,10 @@ api.patch('/scada/material',
   });
 
 api.patch('/scada/product', async (ctx, next) => {
-  const {qualified} = ctx.request.body as any
+  const {status} = ctx.request.body as any
 
-  console.log('收到请求', qualified)
-  scadaCache.updateProduct(qualified)
+  console.log('收到请求', status)
+  scadaCache.updateProduct(status)
   console.log(JSON.stringify(scadaCache.getCache()))
   ctx.body = {
     data: 'success'

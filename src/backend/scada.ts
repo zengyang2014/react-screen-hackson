@@ -1,3 +1,5 @@
+import { number } from "echarts";
+
 class ScadaCache {
   private readonly cache: {
     source: {
@@ -10,6 +12,7 @@ class ScadaCache {
         defective: number;
         qualified: number;
       };
+      faultReason: number[]
     }
   };
 
@@ -25,6 +28,7 @@ class ScadaCache {
           defective: 1,
           qualified: 1,
         },
+        faultReason: [0, 0, 0, 0, 0, 0, 0, 0, 0]
       }
     };
   }
@@ -39,11 +43,12 @@ class ScadaCache {
     this.cache.source.material.materialC -= 1
   }
 
-  updateProduct(qualified: boolean){
-    if(qualified){
+  updateProduct(status: string){
+    if(status === '0'){
       this.cache.source.product.qualified += 1
     }else{
       this.cache.source.product.defective += 1
+      this.cache.source.faultReason[Number(status) - 1] += 1
     }
   }
 
