@@ -12,18 +12,11 @@ class ScadaCache {
         defective: number;
         qualified: number;
       };
-      faultReason: { num: number; date: number }[];
+      faultReason: number[];
     };
   };
 
   constructor() {
-    let faultReason = [];
-    for (let i = 0; i < 9; i++) {
-      faultReason.push({
-        num: 0,
-        date: Date.now(),
-      });
-    }
     this.cache = {
       source: {
         material: {
@@ -35,7 +28,7 @@ class ScadaCache {
           defective: 1,
           qualified: 1,
         },
-        faultReason,
+        faultReason: [0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
     };
   }
@@ -55,8 +48,7 @@ class ScadaCache {
       this.cache.source.product.qualified += 1;
     } else {
       this.cache.source.product.defective += 1;
-      this.cache.source.faultReason[Number(status) - 1].num += 1;
-      this.cache.source.faultReason[Number(status) - 1].date = Date.now()
+      this.cache.source.faultReason[Number(status) - 1] += 1;
     }
   }
 
