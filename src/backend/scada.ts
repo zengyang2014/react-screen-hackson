@@ -22,8 +22,8 @@ class ScadaCache {
           materialC: 3368
         },
         product: {
-          defective: 2,
-          qualified: 135,
+          defective: 0,
+          qualified: 0,
         },
       }
     };
