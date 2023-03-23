@@ -22,18 +22,18 @@ export const Chart12 = () => {
             monthFault = cache.baoding.faultTime.month
         }
         const data = [
-            {value: monthFault[4], name: '4'},
-            {value: monthFault[5], name: '5'},
-            {value: monthFault[6], name: '6'},
-            {value: monthFault[7], name: '7'},
-            {value: monthFault[8], name: '8'},
-            {value: monthFault[9], name: '9'},
-            {value: monthFault[10], name: '10'},
-            {value: monthFault[11], name: '11'},
-            {value: monthFault[12], name: '12'},
-            {value: monthFault[1], name: '1'},
-            {value: monthFault[2], name: '2'},
-            {value: monthFault[3], name: '3'},
+            {value: monthFault[4], name: '4月'},
+            {value: monthFault[5], name: '5月'},
+            {value: monthFault[6], name: '6月'},
+            {value: monthFault[7], name: '7月'},
+            {value: monthFault[8], name: '8月'},
+            {value: monthFault[9], name: '9月'},
+            {value: monthFault[10], name: '10月'},
+            {value: monthFault[11], name: '11月'},
+            {value: monthFault[12], name: '12月'},
+            {value: monthFault[1], name: '1月'},
+            {value: monthFault[2], name: '2月'},
+            {value: monthFault[3], name: '3月'},
         ];
         let myChart = echarts.init(divRef.current);
         myChart.setOption(createEchartsOptions({

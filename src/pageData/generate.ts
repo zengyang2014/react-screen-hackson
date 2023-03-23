@@ -17,8 +17,8 @@ const randomScope = {
     },
     day: {
       capacity: {
-        max: 700,
-        min: 300,
+        max: 600,
+        min: 500,
       },
       defective: {
         max: 5,
@@ -42,8 +42,8 @@ const randomScope = {
   },
   faultTime: {
     month: {
-      min: 500,
-      max: 1000
+      min: 5,
+      max: 10
     }
   }
 };
