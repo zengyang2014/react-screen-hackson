@@ -36,7 +36,7 @@ export const Chart3 = () => {
             {
                 name: CityNames.baoding,
                 type: 'line',
-                data: Object.values(mockData.baoding.productStatus.day).map((item)=>{return item.capacity})
+                data: Object.values(mockData.baoding.productStatus.day).map((item, key)=>{return item.capacity + key * 30})
             }
         ]
 
