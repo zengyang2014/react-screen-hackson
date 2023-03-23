@@ -42,7 +42,7 @@ export const Home = ({data}) => {
           {province === 'HeBei' && <Chart4 data={data}/>}
         </section>
         <section className="bordered section3">
-          <Chart5/>
+          <Chart5 appData={data}/>
         </section>
         <section className="section4" style={{height: "100%"}}>
           <Chart6/>
