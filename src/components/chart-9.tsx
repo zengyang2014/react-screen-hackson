@@ -2,11 +2,15 @@ import React, {useEffect, useRef, useState} from 'react';
 import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from '../shared/px';
+import {useRecoilValue} from "recoil";
+import {powerUsageState} from "../state/store";
 
 const dataLength = 8
 
 export const Chart9 = ({data}) => {
   const divRef = useRef(null);
+
+  const powerUsage = useRecoilValue(powerUsageState)
 
   useEffect(() => {
     const chart = echarts.init(divRef.current);
@@ -44,7 +48,7 @@ export const Chart9 = ({data}) => {
       },
       series: [{
         type: 'line',
-        data: [3.01, 2.6, 3.65, 3.33, 3.12, 3.40, 3.28, 3.51],
+        data: [3.01, 2.6, 3.65, 3.33, 3.12, 3.40, 3.28, powerUsage],
         symbol: 'circle',
         symbolSize: px(12),
         lineStyle: {width: px(2)},
@@ -59,7 +63,7 @@ export const Chart9 = ({data}) => {
         }
       }]
     }));
-  }, []);
+  }, [powerUsage]);
 
   return (
     <div className="年龄段-图3">
