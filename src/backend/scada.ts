@@ -1,11 +1,10 @@
 class ScadaCache {
   private readonly cache: {
-    plcPortValues: {
-      [key: string]: any;
-    };
     source: {
       material: {
-        [key: string]: number;
+        materialA: number,
+        materialB: number,
+        materialC: number;
       };
       product: {
         defective: number;
@@ -16,12 +15,15 @@ class ScadaCache {
 
   constructor() {
     this.cache = {
-      plcPortValues: {},
       source: {
-        material: {},
+        material: {
+          materialA: 1458,
+          materialB: 2564,
+          materialC: 3368
+        },
         product: {
-          defective: 0,
-          qualified: 0,
+          defective: 2,
+          qualified: 135,
         },
       }
     };
@@ -31,8 +33,21 @@ class ScadaCache {
     this.cache[key] = value;
   }
 
+  subMateria(){
+    this.cache.source.material.materialA -= 1
+    this.cache.source.material.materialB -= 1
+    this.cache.source.material.materialC -= 1
+  }
+
+  updateProduct(qualified: boolean){
+    if(qualified){
+      this.cache.source.product.qualified += 1
+    }else{
+      this.cache.source.product.defective += 1
+    }
+  }
+
   setPlcPortValues(data: { [key: string]: any }) {
-    this.cache.plcPortValues = data;
   }
 
   getCache() {
