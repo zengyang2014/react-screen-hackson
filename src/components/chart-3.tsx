@@ -13,7 +13,7 @@ import { mockData } from '../pageData/mockData';
 export const Chart3 = () => {
     const divRef = useRef(null);
     const [province] = useRecoilState(provinceState)
-    
+
     useEffect(() => {
         const days = [18, 19, 20, 21, 22, 23, 24]
         var myChart = echarts.init(divRef.current);
@@ -69,6 +69,7 @@ export const Chart3 = () => {
             },
             yAxis: {
                 type: 'value',
+                data: [200, 400, 600, 800],
                 splitLine: {lineStyle: {color: '#073E78'}},
                 axisLabel: {
                     formatter(val) {
@@ -83,10 +84,15 @@ export const Chart3 = () => {
                 lineStyle: {width: px(2)}
             }))
         }));
+        return () =>{
+            myChart.dispose()
+        }
     }, [province]);
 
+    const className = province === 'China' ? 'bordered daily-productive' : 'bordered daily-productive city'
+
     return (
-        <div className="bordered daily-productive">
+        <div className={className}>
             <h2>{headerTextGen(province)}日总产量</h2>
             <div ref={divRef} className="chart"/>
         </div>

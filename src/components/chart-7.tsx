@@ -4,19 +4,24 @@ import {createEchartsOptions} from "../shared/create-echarts-options";
 import {px} from "../shared/px";
 import {useRecoilState} from "recoil";
 import {powerUsageState} from "../state/store";
+import {provinceState} from "../state/store";
 
 export const Chart7=()=>{
 
   const [powerUsage, setPowerUsage] = useRecoilState(powerUsageState)
+    const [power, setPower] = useState(3.56)
+  const [province] = useRecoilState(provinceState)
 
   useEffect(() => {
+    const defaultPower = province === 'China' ? 3.56 : 1
     const interval = setInterval(() => {
       setPowerUsage(powerUsage + (Math.random() - 0.5) * 0.01)
+      setPower(defaultPower + (Math.random() - 0.5) * 0.01)
     }, 1000)
     return () =>{
       clearInterval(interval)
     }
-  }, [])
+  }, [province])
 
     return (
         <div className="年龄段-图1">

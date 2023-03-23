@@ -17,6 +17,7 @@ import {Timer}from '../components/Timer'
 import {useRecoilState} from "recoil";
 import {provinceState} from "../state/store";
 import {headerTextGen} from "../components/util/headerTextGen";
+import {Chart4} from "../components/chart-4";
 
 
 export const Home = ({data}) => {
@@ -38,6 +39,7 @@ export const Home = ({data}) => {
         </section>
         <section className="section2">
           <Chart3/>
+          {province === 'HeBei'&&<Chart4 data={data}/>}
         </section>
         <section className="bordered section3">
           <Chart5/>

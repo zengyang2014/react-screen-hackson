@@ -162,6 +162,9 @@
     .daily-productive, .analysis {
       height: px(363);
     }
+    .city {
+      height: 50% !important;
+    }
     .chart11, .chart12 {
       flex: 1;
       display: flex;
@@ -320,5 +323,50 @@
   color: #33a4fa;
   font-size: 2.652893rem;
   text-shadow: 0 0 0.826446281rem #33a4fa;
+  font-weight: bold;
+}
+
+.passOnceSpan1 {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  color: #33a4fa;
+  font-size: 1.652893rem;
+  text-shadow: 0 0 0.826446281rem #33a4fa;
+  font-weight: bold;
+}
+
+.passOnceSpan2 {
+  color: #91cc75;
+  position: absolute;
+  top: 65%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  font-size: 4.052893rem;
+  text-shadow: 0 0 0.826446281rem #91cc75;
+  font-weight: bold;
+}
+
+.passOnceSpan3 {
+  width: 200px;
+  position: absolute;
+  top: 40%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  color: #33a4fa;
+  font-size: 1.652893rem;
+  text-shadow: 0 0 0.826446281rem #33a4fa;
+  font-weight: bold;
+}
+
+.passOnceSpan4 {
+  position: absolute;
+  top: 65%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  color: #f7a110;
+  font-size: 1.652893rem;
+  text-shadow: 0 0 0.826446281rem #f7a110;
   font-weight: bold;
 }
