@@ -21,7 +21,7 @@ class ScadaCache {
     for (let i = 0; i < 9; i++) {
       faultReason.push({
         num: 0,
-        Date: Date.now(),
+        date: Date.now(),
       });
     }
     this.cache = {
