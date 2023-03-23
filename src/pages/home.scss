@@ -45,7 +45,7 @@
   }
 
   > footer{
-    height: px(68);
+    height: px(50);
     border: 1px solid #0d2d59;
     margin: px(20) 0 1px;
     border-radius: 4px;
@@ -55,14 +55,14 @@
     justify-content: center;
   }
   > main {
-    width: px(2420);
+    width: 94vw;
     margin: 0 auto;
     padding-top:px(30);
     flex: 1;
     display: grid;
     grid-template:
             "box1 box2 box4 box5" 755fr
-            "box3 box3 box4 box6" 363fr / 366fr 361fr 811fr 747fr;
+            "box3 box3 box7 box6" 363fr / 15.666667% 15.666667% 33.333333% 31.333333%;
     grid-column-gap:px(28);
     grid-row-gap: px(28);
     > section{
@@ -112,6 +112,8 @@
     }
     > .section4 {
       grid-area: box4;
+      width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -122,11 +124,15 @@
       flex-direction: column;
       justify-content: space-between;
       > .row1 {
-        height: px(317);
+        height: 50%;
       }
       > .row2 {
-        height: px(317);
+        height: 50%;
       }
+    }
+    > .section6 {
+      grid-area: box6;
+      height: 100% !important;
     }
     .monthly-productive, .daily-productive-sort, .daily-productive, .analysis, .战果, .the-map, .年龄段, .defective-percentage, .non-failure-time, .chart-14-box{
       height:px(315);
@@ -169,6 +175,7 @@
       .legend {@extend %legend;}
     }
     .年龄段 {
+      grid-area: box7;
       display: flex;
       flex-direction: column;
       height: px(363);
@@ -208,10 +215,11 @@
       }
     }
     .the-map {
-      height: px(753);
+      height: 100% !important;
       background: transparent;
       > .wrapper {
         position: relative;
+        height: 100%  !important;
         width: 100%;
         flex: 1;
         display: flex;
@@ -263,7 +271,6 @@
       }
     }
     .chart-14-box {
-      height: px(400) !important;
       > table {
         tbody {
           td {
@@ -273,8 +280,7 @@
       }
     }
     .daily-productive-sort {
-      height:px(423);
-      margin-top: px(25);
+      height: 47% !important;
       .legend {
         display: flex;
         align-items: center;

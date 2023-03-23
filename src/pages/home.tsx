@@ -7,7 +7,6 @@ import {Chart3} from "../components/chart-3";
 import {Chart5} from "../components/chart-5";
 import {Chart6} from "../components/chart-6";
 import {Chart7} from '../components/chart-7';
-import {Chart8} from '../components/chart-8';
 import {Chart9} from '../components/chart-9';
 import {Chart12} from "../components/chart-12";
 import {Chart13} from "../components/chart-13";
@@ -43,27 +42,26 @@ export const Home = () => {
         <section className="bordered section3">
           <Chart5/>
         </section>
-        <section className="section4">
-          <div className="bordered">
+        <section className="section4" style={{height: "100%"}}>
             <Chart6/>
-          </div>
-          <div className="bordered 年龄段" style={{height: `${px(370)}px`}}>
-            <h2>犯罪人员年龄段分布</h2>
+        </section>
+        <section className="section7">
+          <div className="bordered 年龄段" style={{height: `${px(380)}px`}}>
+            <h2>{headerTextGen(province)}能效统计</h2>
             <div className="charts">
               <Chart7/>
-              <Chart8/>
               <Chart9/>
             </div>
           </div>
         </section>
         <section className="section5">
-          <div className="bordered row1 defective-percentage">
+          <div className="bordered row1 defective-percentage" style={{height: '50%'}}>
             <h2>{headerTextGen(province)}次品趋势图</h2>
             <div className="charts">
               <Chart15/>
             </div>
           </div>
-          <div className="bordered row2 non-failure-time" style={{height: `${px(390)}px`}}>
+          <div className="bordered row2 non-failure-time" style={{height: "47%"}}>
             <h2>{headerTextGen(province)}平均故障时间</h2>
             <div className="charts" style={{height: `${px(350)} !important`}}>
               <Chart12/>
@@ -71,7 +69,7 @@ export const Home = () => {
             </div>
           </div>
         </section>
-        <section>
+        <section className="section6">
           <div className="bordered row3 chart-14-box">
             <h2>{headerTextGen(province)}次品原因分析</h2>
             <Chart14/>
