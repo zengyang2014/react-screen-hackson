@@ -200,7 +200,7 @@
           display: flex;
           > .main {flex: 1;}
           > .text {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            color: #33a4fa; font-size: px(40); text-shadow: 0 0 px(20) #33a4fa;font-weight: bold;}
+            color: #33a4fa; font-size: px(40);}
         }
       }
       &-图2 {
@@ -317,12 +317,10 @@
 
 .rank {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  text-align:center;
+  top: 40%;
   color: #33a4fa;
-  font-size: 2.652893rem;
-  text-shadow: 0 0 0.826446281rem #33a4fa;
+  font-size: 4rem;
   font-weight: bold;
 }
 
@@ -333,7 +331,7 @@
   transform: translate(-50%, -50%);
   color: #33a4fa;
   font-size: 1.652893rem;
-  text-shadow: 0 0 0.826446281rem #33a4fa;
+
   font-weight: bold;
 }
 
@@ -344,7 +342,7 @@
   left: 30%;
   transform: translate(-50%, -50%);
   font-size: 4.052893rem;
-  text-shadow: 0 0 0.826446281rem #91cc75;
+
   font-weight: bold;
 }
 
@@ -356,7 +354,7 @@
   transform: translate(-50%, -50%);
   color: #33a4fa;
   font-size: 1.652893rem;
-  text-shadow: 0 0 0.826446281rem #33a4fa;
+
   font-weight: bold;
 }
 
@@ -366,7 +364,7 @@
   left: 75%;
   transform: translate(-50%, -50%);
   color: #f7a110;
-  font-size: 1.652893rem;
-  text-shadow: 0 0 0.826446281rem #f7a110;
+  font-size: 4rem;
+  
   font-weight: bold;
 }

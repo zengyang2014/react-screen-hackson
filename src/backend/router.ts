@@ -1,5 +1,8 @@
 import KoaRouter from 'koa-router';
-import {scadaCache} from './scada'
+import {scadaCache} from './scada';
+import fs from 'fs'
+import path from 'path'
+import mime from 'mime-types'
 
 const api =  new KoaRouter();
 
@@ -9,6 +12,22 @@ api.get('/scada',
     ctx.body = {
       data: JSON.stringify(data),
     };
+  });
+
+api.get('/images',
+  async (ctx, next) => {
+    console.log('请求图片')
+    const good = fs.readFileSync(path.join(__dirname, '../../resource/good.png'), 'base64')
+    const broken = fs.readFileSync(path.join(__dirname, '../../resource/broken.png'), 'base64')
+    const scratch = fs.readFileSync(path.join(__dirname, '../../resource/scratch.png'), 'base64')
+    const fractures = fs.readFileSync(path.join(__dirname, '../../resource/fractures.png'), 'base64')
+    ctx.body = {
+      good, 
+      broken,
+      scratch,
+      cracks: fractures
+    };
+    ctx.status = 200;
   });
 
 api.patch('/scada/material',
