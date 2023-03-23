@@ -11,10 +11,8 @@ export const Chart15 = (appData) => {
   const divRef = useRef(null);
   const [province] = useRecoilState(provinceState);
 
-  let defective = 0
-  if (appData.appData.source !== undefined) {
-    defective = appData.appData.source.product.defective
-  }
+  const defective = appData.appData.source?.product?.defective || 0
+
 
   const currentTotalNumber = 10000
   const currentDefective = 240

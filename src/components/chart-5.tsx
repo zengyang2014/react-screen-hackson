@@ -4,10 +4,9 @@ import { mockData } from "../pageData/mockData";
 import { scadaCache } from "../state/store";
 
 export const Chart5 = (appData) => {
-  let totalUsed = 0
-  if (appData.appData.source !== undefined) {
-    totalUsed = appData.appData.source.product.defective + appData.appData.source.product.qualified
-  }
+  const defective = appData.appData.source?.product?.defective || 0
+  const qualified = appData.appData.source?.product?.qualified || 0
+  const totalUsed = defective + qualified
 
   const [scada] = useRecoilState(scadaCache);
   const allA =
