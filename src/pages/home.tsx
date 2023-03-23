@@ -61,7 +61,7 @@ export const Home = ({data}) => {
           <div className="bordered row1 defective-percentage" style={{height: '50%'}}>
             <h2>{headerTextGen(province)}次品趋势图</h2>
             <div className="charts">
-              <Chart15/>
+              <Chart15 appData={data}/>
             </div>
           </div>
           <div className="bordered row2 non-failure-time" style={{height: "47%"}}>

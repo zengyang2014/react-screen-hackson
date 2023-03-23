@@ -7,9 +7,20 @@ import { mockData } from "../pageData/mockData";
 import { useRecoilState } from "recoil";
 import { provinceState } from "../state/store";
 
-export const Chart15 = () => {
+export const Chart15 = (appData) => {
   const divRef = useRef(null);
   const [province] = useRecoilState(provinceState);
+
+  let defective = 0
+  if (appData.source !== undefined) {
+    defective = appData.source.product.defective
+  }
+
+  const currentTotalNumber = 10000
+  const currentDefective = 240
+  const totalDefective = currentDefective + defective
+  const perfectRate = 1 - ((currentDefective + defective) / (currentTotalNumber + defective))
+
   useEffect(() => {
     if(province === 'China') {
       var myChart = echarts.init(divRef.current);
@@ -79,10 +90,10 @@ export const Chart15 = () => {
       </div>}
       {province === 'HeBei' &&
         <>
-          <span className='passOnceSpan1'>当前产线一次合格率</span>
-          <span className='passOnceSpan2'>97.60%</span>
+          <span className='passOnceSpan1'>投产以来一次合格率</span>
+          <span className='passOnceSpan2'>{(perfectRate * 100).toFixed(2)}%</span>
             <span className='passOnceSpan3'>一次未合格个数</span>
-            <span className='passOnceSpan4'>240</span>
+            <span className='passOnceSpan4'>{totalDefective}</span>
         </>}
     </div>
   );
