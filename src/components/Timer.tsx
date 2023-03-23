@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import '../pages/home.scss';
+import "./Timer.scss"
+
 const formatDigits = (digit: number, length: number) => {
   return (digit + "").padStart(length, "0")
 }

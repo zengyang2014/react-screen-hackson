@@ -2,15 +2,23 @@ import React, {useEffect, useRef, useState} from 'react';
 import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from '../shared/px';
+import {useRecoilValue} from "recoil";
+import {powerUsageState} from "../state/store";
+import {useRecoilState} from "recoil";
+import {provinceState} from "../state/store";
 
 const dataLength = 8
 
 export const Chart9 = ({data}) => {
   const divRef = useRef(null);
+  const [province] = useRecoilState(provinceState)
+
+  const powerUsage = useRecoilValue(powerUsageState)
 
   useEffect(() => {
     const chart = echarts.init(divRef.current);
     const date: string[] = []
+    const powerValue = province === 'China' ? [3.01, 2.6, 3.65, 3.33, 3.12, 3.40, 3.28, 3.51] : [1.01, 1.6, 1.65, 1.33, 1.12, 1.40, 1.28, 1.51]
     let now = new Date()
     Array(dataLength).fill(0).forEach(() => {
       date.push(`${now.getDate()}/${now.getMonth()}`);
@@ -44,7 +52,7 @@ export const Chart9 = ({data}) => {
       },
       series: [{
         type: 'line',
-        data: [3.01, 2.6, 3.65, 3.33, 3.12, 3.40, 3.28, 3.51],
+        data: powerValue,
         symbol: 'circle',
         symbolSize: px(12),
         lineStyle: {width: px(2)},
@@ -59,7 +67,7 @@ export const Chart9 = ({data}) => {
         }
       }]
     }));
-  }, []);
+  }, [province]);
 
   return (
     <div className="年龄段-图3">

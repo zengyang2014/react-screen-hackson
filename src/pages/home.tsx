@@ -17,6 +17,7 @@ import {Timer}from '../components/Timer'
 import {useRecoilState} from "recoil";
 import {provinceState} from "../state/store";
 import {headerTextGen} from "../components/util/headerTextGen";
+import {Chart4} from "../components/chart-4";
 
 
 export const Home = ({data}) => {
@@ -25,7 +26,7 @@ export const Home = ({data}) => {
 
   return (
     <div className="home">
-      <header style={{backgroundImage: `url(${headerBg})`}} className={"title"}>
+      <header style={{backgroundImage: `url(${headerBg})`, paddingTop: px(5)}} className={"title"}>
         <div className={"title-text"}>
           工易赛博坦智能汽车制造产线
         </div>
@@ -38,6 +39,7 @@ export const Home = ({data}) => {
         </section>
         <section className="section2">
           <Chart3/>
+          {province === 'HeBei'&&<Chart4 data={data}/>}
         </section>
         <section className="bordered section3">
           <Chart5/>
@@ -57,9 +59,9 @@ export const Home = ({data}) => {
         </section>
         <section className="section5">
           <div className="bordered row1 defective-percentage" style={{height: '50%'}}>
-            <h2>{headerTextGen(province)}次品趋势图</h2>
+            <h2>{headerTextGen(province)}次品{province === 'China' ? '趋势图' : '信息'}</h2>
             <div className="charts">
-              <Chart15/>
+              <Chart15 appData={data}/>
             </div>
           </div>
           <div className="bordered row2 non-failure-time" style={{height: "47%"}}>

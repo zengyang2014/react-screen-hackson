@@ -23,6 +23,7 @@ function App() {
     }
   }, [])
 
+  console.log(appData)
 
   return (
     <RecoilRoot>

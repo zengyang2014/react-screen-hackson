@@ -10,3 +10,8 @@ export const scadaCache = atom({
   key: 'scadaCache',
   default: mockData
 })
+
+export const powerUsageState = atom({
+  key: 'powerUsage',
+  default: 3.453
+})
