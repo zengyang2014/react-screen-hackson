@@ -60,6 +60,13 @@ export const Chart1 = () => {
             name: "销量",
             type: "bar",
             data: mouthCapacity,
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+              offset: 0,
+              color: '#0A97FB'
+            }, {
+              offset: 1,
+              color: '#1E34FA'
+            }]),
           },
         ],
       })

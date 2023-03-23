@@ -16,7 +16,7 @@ export const Chart3 = () => {
 
     useEffect(() => {
         const days = [18, 19, 20, 21, 22, 23, 24]
-        var myChart = echarts.init(divRef.current);
+        let myChart = echarts.init(divRef.current);
         let series = [
             {
                 name: CityNames.chengdu,
@@ -76,13 +76,39 @@ export const Chart3 = () => {
                     }
                 }
             },
-            series: series.map(obj => ({
+            series: series.map((obj, index) => {
+                const result: any = {
                 ...obj,
-                symbol: 'circle',
-                symbolSize: px(12),
-                lineStyle: {width: px(2)}
-            }))
+                  symbol: 'circle',
+                  symbolSize: px(12),
+                  lineStyle: {width: px(2)}
+                }
+                if (obj.name === CityNames.baoding){
+                    result.lineStyle.color = "#ff7070"
+                    result.itemStyle = {
+                        color: "#ff7070"
+                    }
+                    if (province !== "China"){
+                        result.areaStyle = {
+                            color: {
+                                type: "linear",
+                                x: 0,
+                                y:0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [
+                                    {offset: 0, color: "#ff7070"},
+                                    {offset: 0.8, color: "rgba(0,0,0,0.2)"},
+                                    {offset: 1, color: "rgba(0,0,0,0)"},
+                                ]
+                            }
+                        }
+                    }
+                }
+                return result
+            })
         }));
+
         return () =>{
             myChart.dispose()
         }
