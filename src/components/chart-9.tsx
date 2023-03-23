@@ -3,20 +3,16 @@ import * as echarts from 'echarts';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 import {px} from '../shared/px';
 
+const dataLength = 8
 
 export const Chart9 = ({data}) => {
   const divRef = useRef(null);
-  const [chart, setChart] = useState(null)
 
   useEffect(() => {
-    if (!chart) {
-      const myChart = echarts.init(divRef.current);
-      setChart(myChart)
-      return
-    }
+    const chart = echarts.init(divRef.current);
     const date: string[] = []
     let now = new Date()
-    data.energyTrends.forEach(() => {
+    Array(dataLength).fill(0).forEach(() => {
       date.push(`${now.getDate()}/${now.getMonth()}`);
       now = new Date(now.getTime() - 3600 * 1000 * 24)
     })
@@ -48,7 +44,7 @@ export const Chart9 = ({data}) => {
       },
       series: [{
         type: 'line',
-        data: data.energyTrends || [],
+        data: [3.01, 2.6, 3.65, 3.33, 3.12, 3.40, 3.28, 3.51],
         symbol: 'circle',
         symbolSize: px(12),
         lineStyle: {width: px(2)},
@@ -63,7 +59,7 @@ export const Chart9 = ({data}) => {
         }
       }]
     }));
-  }, [data]);
+  }, []);
 
   return (
     <div className="年龄段-图3">

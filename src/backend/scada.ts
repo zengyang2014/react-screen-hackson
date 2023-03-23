@@ -11,8 +11,7 @@ class ScadaCache {
         defective: number;
         qualified: number;
       };
-    };
-    energyTrends: number[];
+    }
   };
 
   constructor() {
@@ -24,8 +23,7 @@ class ScadaCache {
           defective: 0,
           qualified: 0,
         },
-      },
-      energyTrends: [3.01, 2.6, 3.65, 3.33, 3.12, 3.40, 3.28, 3.51]
+      }
     };
   }
 
