@@ -1,4 +1,4 @@
-import {Citys} from './geo'
+import { Citys } from './geo'
 const randomNum = (minNum: number, maxNum: number) => {
   return Math.floor(Math.random() * (maxNum - minNum + 1) + minNum);
 };
@@ -11,8 +11,8 @@ const randomScope = {
         min: 10000,
       },
       defective: {
-        max: 60,
-        min: 30,
+        max: 1,
+        min: 0,
       },
     },
     day: {
@@ -40,6 +40,12 @@ const randomScope = {
       min: 900,
     },
   },
+  faultTime: {
+    month: {
+      min: 500,
+      max: 1000
+    }
+  }
 };
 
 export const generateData = () => {
@@ -52,6 +58,7 @@ export const generateData = () => {
         defective: number;
       };
     } = {};
+    const monthFaultTime = {}
     const dayData: {
       [key: number]: {
         capacity: number;
@@ -69,6 +76,7 @@ export const generateData = () => {
           randomScope.productStatus.month.defective.max
         ),
       };
+      monthFaultTime[m] = randomNum(randomScope.faultTime.month.min, randomScope.faultTime.month.max)
     }
 
     for (let d = 18; d < 25; d++) {
@@ -84,7 +92,7 @@ export const generateData = () => {
       };
     }
     const defectiveReasonData = []
-    for(let i =0; i < 9; i++){
+    for (let i = 0; i < 9; i++) {
       defectiveReasonData.push(randomNum(0, 5))
     }
 
@@ -108,6 +116,9 @@ export const generateData = () => {
         ),
       },
       defectiveReason: defectiveReasonData,
+      faultTime: {
+        month: monthFaultTime
+      }
     };
   }
 

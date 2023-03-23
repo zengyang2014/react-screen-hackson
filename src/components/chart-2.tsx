@@ -12,32 +12,11 @@ export const Chart2 = () => {
     const myChart = useRef(null);
     const [province] = useRecoilState(provinceState)
     const data = [
-        {name: '城关区公安局', 2011: 2, 2012: 3},
-        {name: '七里河区公安局', 2011: 2, 2012: 3},
-        {name: '西固区公安局', 2011: 2, 2012: 3},
-        {name: '安宁区公安局', 2011: 2, 2012: 3},
-        {name: '红古区公安局', 2011: 2, 2012: 3},
-        {name: '永登县公安局', 2011: 2, 2012: 3},
-        {name: '皋兰县公安局', 2011: 2, 2012: 3},
-        {name: '榆中县公安局', 2011: 2, 2012: 3},
-        {name: '新区公安局', 2011: 2, 2012: 3},
+        {name: '保定', 2011: 5},
+        {name: '成都', 2011: 4},
+        {name: '上海', 2011: 3},
+        {name: '西安', 2011: 3},
     ];
-    useEffect(() => {
-        setInterval(() => {
-            const newData = [
-                {name: '城关区公安局', 2011: 2, 2012: Math.random() * 10},
-                {name: '七里河区公安局', 2011: 2, 2012: 3},
-                {name: '西固区公安局', 2011: 2, 2012: 3},
-                {name: '安宁区公安局', 2011: 2, 2012: 3},
-                {name: '红古区公安局', 2011: 2, 2012: 3},
-                {name: '永登县公安局', 2011: 2, 2012: 3},
-                {name: '皋兰县公安局', 2011: 2, 2012: 3},
-                {name: '榆中县公安局', 2011: 2, 2012: 3},
-                {name: '新区公安局', 2011: 2, 2012: 3},
-            ];
-            x(newData);
-        }, 1000);
-    }, []);
     const x = (data) => {
         myChart.current.setOption(createEchartsOptions({
             xAxis: {
@@ -72,40 +51,35 @@ export const Chart2 = () => {
                             }]),
                         }
                     }
-                },
-                {
-                    name: '2012年',
-                    type: 'bar',
-                    data: data.map(i => i[2012]),
-                    itemStyle: {
-                        normal: {
-                            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
-                                offset: 0,
-                                color: '#B92AE8'
-                            }, {
-                                offset: 1,
-                                color: '#6773E7'
-                            }]),
-                        }
-                    }
                 }
             ]
         }));
 
     };
     useEffect(() => {
-        myChart.current = echarts.init(divRef.current);
-        x(data);
-    }, []);
+        if (province === 'China') {
+            myChart.current = echarts.init(divRef.current);
+            x(data);
+        } else {
+            divRef.current
+        }
+    }, [province]);
 
     return (
         <div className="bordered daily-productive-sort">
             <h2>{headerTextGen(province)}日产量排名</h2>
-            <div ref={divRef} className="chart"/>
-            <div className="legend">
-                <span className="first"/> 破案排名1
-                <span className="second"/> 破案排名2
-            </div>
+            {province === 'China'&&
+                <><div ref={divRef} className="chart"/>
+                <div className="legend">
+                <span className="first"/> 保定
+                <span className="second"/> 成都
+                </div>
+                </>
+            }
+            {province === 'HeBei'&&
+              <span className='rank'>No. 01</span>
+            }
+
         </div>
     );
 };
